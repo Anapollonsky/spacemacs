@@ -5095,9 +5095,8 @@ Also affects 'linum-mode' background."
 
    `(whitespace-indentation
      ((,class (:background unspecified
-                           :foreground ,yellow
-                           :inverse-video unspecified
-                           :weight bold))
+                           :foreground ,apples-whitespace
+                           :inverse-video unspecified))
       (,terminal-class (:background unspecified
                                     :foreground ,terminal-yellow
                                     :inverse-video unspecified
