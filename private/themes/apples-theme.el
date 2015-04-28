@@ -845,7 +845,7 @@ Also affects 'linum-mode' background."
 
    ;; ace-jump-mode
    `(ace-jump-face-background
-     ((,class (:foreground ,apples-comments
+     ((,class (:foreground ,apples-whitespace-bright
                            :background ,apples-bg
                            :inverse-video nil))
       (,terminal-class (:foreground ,terminal-apples-comments
