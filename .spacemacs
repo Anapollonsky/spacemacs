@@ -10,7 +10,7 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org)
+   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org ztree)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -226,5 +226,22 @@ layers configuration."
     (spacemacs/defface-state-color 'iedit "SpringGreen4")
     (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
     (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
+
+    ;; xml
+    ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
+    (defun pretty-print-xml-region (begin end)
+      "Pretty format XML markup in region. You need to have nxml-mode
+       http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
+       this.  The function inserts linebreaks to separate tags that have
+       nothing but whitespace between them.  It then indents the markup
+       by using nxml's indentation rules."
+      (interactive "r")
+      (save-excursion
+        (nxml-mode)
+        (goto-char begin)
+        (while (search-forward-regexp "\>[ \\t]*\<" nil t) 
+          (backward-char) (insert "\n"))
+        (indent-region begin end))
+      (message "Ah, much better!"))
     ))
 
