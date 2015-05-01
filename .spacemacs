@@ -249,7 +249,9 @@ layers configuration."
       (message "Ah, much better!"))
 
     ;; face
+    ;; http://stackoverflow.com/questions/1242352/get-font-face-under-cursor-in-emacs
     (defun what-face (pos)
+      "Get the face name at current pointer position"
       (interactive "d")
       (let ((face (or (get-char-property (point) 'read-face-name)
                       (get-char-property (point) 'face))))
@@ -271,4 +273,33 @@ layers configuration."
      mu4e-drafts-folder "/Drafts"     ;; unfinished messages
      mu4e-trash-folder  "/trash"      ;; trashed messages
      mu4e-refile-folder "/archive")   ;; saved messages
+
+    ;; code checking
+    
+    ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs
+    (defun run-cppcheck (file)
+      "Run the cppcheck executable on a file/directory, with the output going
+       to a compilation buffer. Requires cppcheck."
+      (interactive
+       (list (read-file-name "File to check: " buffer-file-name)))
+      (compile
+       (concat "cppcheck --template='{file}:{line}:{severity}:{message}' --enable=missingInclude,performance,warning " file "; exit -1")))
+    (evil-leader/set-key "ocC" 'run-cppcheck) 
+
+    (defun run-flake8(file)
+      "Run the flake8 executable on a file/directory, with the output going
+       to a compilation buffer. Requires flake8, available on pypi."
+      (interactive
+       (list (read-file-name "File to check: " buffer-file-name)))
+      (compile (concat "flake8 " file)))
+    (evil-leader/set-key "ocp" 'run-flake8) 
+
+    (defun run-pylint(file)
+      "Run the pylint executable on a file/directory, with the output going
+       to a compilation buffer. Requires pylint, available on pypi."
+      (interactive
+       (list (read-file-name "File to check: " buffer-file-name)))
+      (compile (concat "pylint " file)))
+    (evil-leader/set-key "ocP" 'run-pylint) 
+
     ))
