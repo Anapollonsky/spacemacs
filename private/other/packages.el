@@ -10,14 +10,16 @@
 ;;
 ;;; License: GPLv3
 
-(defvar regex-packages
+(defvar other-packages
   '(
-    visual-regexp-steroids 
+    pdf-tools
+    matlab-mode
+    pandoc-mode
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
 
-(defvar regex-excluded-packages '()
+(defvar other-excluded-packages '()
   "List of packages to exclude.")
 
 ;; For each package, define a function NAME/init-<package-name>
@@ -30,13 +32,21 @@ which require an initialization must be listed explicitly in the list.")
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
 
-(defun regex/init-visual-regexp-steroids ()
-  "Initialize visual-regexp-steroids"
-  (use-package visual-regexp-steroids
+(defun other/init-pdf-tools ()
+  "Initialize pdf-tools"
+  (use-package pdf-tools 
+    :init (pdf-tools-install)
     :config
     (progn
-      (evil-leader/set-key "orr" 'vr/replace)
-      (evil-leader/set-key "orq" 'vr/query-replace)
-      (evil-leader/set-key "ors" 'vr/isearch-forward)
-      )))
+      (define-key evil-insert-state-map "k" 'pdf-view-scroll-up-or-next-page)
+      (define-key evil-insert-state-map "j" 'pdf-view-scroll-down-or-previous-page)
+      (define-key evil-insert-state-map "h" 'pdf-view-previous-page-command)
+      (define-key evil-insert-state-map "l" 'pdf-view-next-page-command )
+      ))) 
+
+(defun other/init-matlab-mode ()
+  (use-package matlab-mode))
+
+(defun other/init-pandoc-mode ()
+  (use-package pandoc-mode))
 

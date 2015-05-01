@@ -10,7 +10,7 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org mail chat)
+   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org mail chat other)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -26,7 +26,7 @@ before layers configuration."
   ;; spacemacs settings.
   (progn
     
-    ;; themes
+    ;; theme
     (add-to-list 'custom-theme-load-path "~/.emacs.d/private/themes")
 
     (setq-default
