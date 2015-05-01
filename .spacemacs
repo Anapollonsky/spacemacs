@@ -10,7 +10,7 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org ztree)
+   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org ztree mail chat other)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -25,7 +25,10 @@ before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (progn
+    
+    ;; theme
     (add-to-list 'custom-theme-load-path "~/.emacs.d/private/themes")
+
     (setq-default
      ;; Specify the startup banner. Default value is `official', it displays
      ;; the official spacemacs logo. An integer value is the index of text
@@ -104,6 +107,7 @@ before layers configuration."
      ;; Not used for now.
      dotspacemacs-default-package-repository nil)
     ;; User initialization goes here
+
     )
   )
 
@@ -250,5 +254,21 @@ layers configuration."
       (let ((face (or (get-char-property (point) 'read-face-name)
                       (get-char-property (point) 'face))))
         (if face (message "Face: %s" face) (message "No face at %d" pos))))   
-    ))
 
+    ;; Send email
+    (setq send-mail-function 'smtpmail-send-it)
+    (setq smtpmail-stream-type 'ssl)
+    (setq smtpmail-smtp-server "smtp.gmail.com")
+    (setq smtpmail-smtp-service 465)
+
+    ;; mu4e
+    (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+    (use-package mu4e)
+
+    (setq
+     mu4e-maildir       "~/.mail/gmail"   ;; top-level Maildir
+     mu4e-sent-folder   "/Sent"       ;; folder for sent messages
+     mu4e-drafts-folder "/Drafts"     ;; unfinished messages
+     mu4e-trash-folder  "/trash"      ;; trashed messages
+     mu4e-refile-folder "/archive")   ;; saved messages
+    ))

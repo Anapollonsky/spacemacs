@@ -10,14 +10,14 @@
 ;;
 ;;; License: GPLv3
 
-(defvar regex-packages
+(defvar chat-packages
   '(
-    visual-regexp-steroids 
+   jabber 
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
 
-(defvar regex-excluded-packages '()
+(defvar chat-excluded-packages '()
   "List of packages to exclude.")
 
 ;; For each package, define a function NAME/init-<package-name>
@@ -30,13 +30,11 @@ which require an initialization must be listed explicitly in the list.")
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
 
-(defun regex/init-visual-regexp-steroids ()
+(defun chat/init-jabber()
   "Initialize visual-regexp-steroids"
-  (use-package visual-regexp-steroids
+  (use-package jabber 
     :config
     (progn
-      (evil-leader/set-key "orr" 'vr/replace)
-      (evil-leader/set-key "orq" 'vr/query-replace)
-      (evil-leader/set-key "ors" 'vr/isearch-forward)
+
       )))
 
