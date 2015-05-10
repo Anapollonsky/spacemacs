@@ -200,10 +200,10 @@ layers configuration."
             (newline-mark 10 [182 10]) ; newlne
             (tab-mark 9 [9655 9] [92 9]) ; tab
             ))
-    (when (display-graphic-p) (global-whitespace-mode))
+    (when (display-graphic-p) (spacemacs/toggle-whitespaces-globally))
 
     ;; centered cursor
-    (global-centered-cursor-mode)
+    (spacemacs/toggle-centered-point-globally)
     
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
@@ -274,7 +274,7 @@ layers configuration."
      mu4e-trash-folder  "/trash"      ;; trashed messages
      mu4e-refile-folder "/archive")   ;; saved messages
 
-    ;; code checking
+    ;; syntax checking
     
     ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs
     (defun run-cppcheck (file)
@@ -284,7 +284,6 @@ layers configuration."
        (list (read-file-name "File to check: " buffer-file-name)))
       (compile
        (concat "cppcheck --template='{file}:{line}:{severity}:{message}' --enable=missingInclude,performance,warning " file "; exit -1")))
-    (evil-leader/set-key "ocC" 'run-cppcheck) 
 
     (defun run-flake8(file)
       "Run the flake8 executable on a file/directory, with the output going
@@ -292,7 +291,6 @@ layers configuration."
       (interactive
        (list (read-file-name "File to check: " buffer-file-name)))
       (compile (concat "flake8 " file)))
-    (evil-leader/set-key "ocp" 'run-flake8) 
 
     (defun run-pylint(file)
       "Run the pylint executable on a file/directory, with the output going
@@ -300,6 +298,9 @@ layers configuration."
       (interactive
        (list (read-file-name "File to check: " buffer-file-name)))
       (compile (concat "pylint " file)))
+
+    (evil-leader/set-key "ocp" 'run-flake8) 
+    (evil-leader/set-key "ocC" 'run-cppcheck) 
     (evil-leader/set-key "ocP" 'run-pylint) 
 
     ))
