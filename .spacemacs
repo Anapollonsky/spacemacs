@@ -10,7 +10,10 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python c-c++ cscope regex extra-langs haskell auto-completion syntax-checking org ztree mail chat other)
+   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python
+                                              c-c++ cscope regex extra-langs haskell
+                                              auto-completion syntax-checking org
+                                              ztree mail chat other irc)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -121,7 +124,9 @@ layers configuration."
     (setf user-mail-address "Anapollonsky@gmail.com")
 
     ;; browser
-    (setq browse-url-generic-program (or (executable-find "google-chrome-stable") (executable-find "chromium")))
+    (setq browse-url-generic-program (or (executable-find "firefox")
+                                         (executable-find "google-chrome-stable")
+                                         (executable-find "chromium")))
     (setq browse-url-browser-function 'browse-url-generic)
 
     ;; no dialog boxes
@@ -262,7 +267,7 @@ layers configuration."
     (setq smtpmail-stream-type 'ssl)
     (setq smtpmail-smtp-server "smtp.gmail.com")
     (setq smtpmail-smtp-service 465)
-
+          
     ;; mu4e
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
     (use-package mu4e)
@@ -272,7 +277,11 @@ layers configuration."
      mu4e-sent-folder   "/Sent"       ;; folder for sent messages
      mu4e-drafts-folder "/Drafts"     ;; unfinished messages
      mu4e-trash-folder  "/trash"      ;; trashed messages
-     mu4e-refile-folder "/archive")   ;; saved messages
+     mu4e-refile-folder "/archive"    ;; saved messages
+     mu4e-compose-signature "Andrew Apollonsky"
+     mu4e-get-mail-command "mbsync gmail") 
+
+    (evil-leader/set-key "om" 'mu4e)
 
     ;; syntax checking
     
