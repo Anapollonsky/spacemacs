@@ -279,10 +279,16 @@ layers configuration."
      mu4e-trash-folder  "/trash"      ;; trashed messages
      mu4e-refile-folder "/archive"    ;; saved messages
      mu4e-compose-signature "Andrew Apollonsky"
-     mu4e-get-mail-command "mbsync gmail") 
+     mu4e-get-mail-command "mbsync gmail"
+     mu4e-headers-skip-duplicates t) 
 
     (evil-leader/set-key "om" 'mu4e)
 
+    ;; ztree
+    (evil-leader/set-key "ozt" 'ztree-dir)
+    (evil-leader/set-key "ozd" 'ztree-diff)
+
+    
     ;; syntax checking
     
     ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs

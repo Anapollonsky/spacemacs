@@ -38,6 +38,7 @@ which require an initialization must be listed explicitly in the list.")
     :init (pdf-tools-install)
     :config
     (progn
+      ;; Navigate with hjkl in insert-state
       (define-key evil-insert-state-map "k" 'pdf-view-scroll-up-or-next-page)
       (define-key evil-insert-state-map "j" 'pdf-view-scroll-down-or-previous-page)
       (define-key evil-insert-state-map "h" 'pdf-view-previous-page-command)
