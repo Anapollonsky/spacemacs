@@ -87,7 +87,7 @@ Also affects 'linum-mode' background."
        (gray-l                   "#6b6b6b")
        ;; Adaptive colors
        (apples-fg               "#F8F8F2")
-       (apples-bg               "#1A1A22")
+       (apples-bg               "#181822")
        (apples-whitespace       "#262630")
        (apples-whitespace-bright "#343440")
        (apples-hl-line          "#303038")

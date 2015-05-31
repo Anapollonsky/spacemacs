@@ -15,6 +15,7 @@
     pdf-tools
     matlab-mode
     pandoc-mode
+    sx
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -50,4 +51,8 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun other/init-pandoc-mode ()
   (use-package pandoc-mode))
+
+(defun other/init-sx ()
+  (use-package sx))
+
 

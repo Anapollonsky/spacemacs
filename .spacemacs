@@ -210,6 +210,11 @@ layers configuration."
     ;; centered cursor
     (spacemacs/toggle-centered-point-globally)
     
+    ;; frame transparency
+    (when (display-graphic-p)
+      (progn (setq dotspacemacs-active-transparency 97
+                   dotspacemacs-inactive-transparency 97)))
+
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
@@ -288,7 +293,6 @@ layers configuration."
     (evil-leader/set-key "ozt" 'ztree-dir)
     (evil-leader/set-key "ozd" 'ztree-diff)
 
-    
     ;; syntax checking
     
     ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs
