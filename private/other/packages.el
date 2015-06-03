@@ -13,8 +13,6 @@
 (defvar other-packages
   '(
     pdf-tools
-    matlab-mode
-    pandoc-mode
     sx
     )
   "List of all packages to install and/or initialize. Built-in packages
@@ -45,12 +43,6 @@ which require an initialization must be listed explicitly in the list.")
       (define-key evil-insert-state-map "h" 'pdf-view-previous-page-command)
       (define-key evil-insert-state-map "l" 'pdf-view-next-page-command )
       ))) 
-
-(defun other/init-matlab-mode ()
-  (use-package matlab-mode))
-
-(defun other/init-pandoc-mode ()
-  (use-package pandoc-mode))
 
 (defun other/init-sx ()
   (use-package sx))

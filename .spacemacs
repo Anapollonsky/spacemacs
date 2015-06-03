@@ -13,7 +13,9 @@
    dotspacemacs-configuration-layers '(colors fasd git perspectives slime python
                                               c-c++ cscope regex extra-langs haskell
                                               auto-completion syntax-checking org
-                                              ztree mail chat other irc)
+                                              ztree mail chat other erc emacs-lisp shell
+                                              gtags ibuffer games xkcd pandoc rust semantic sql
+                                              search-engine)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -162,7 +164,7 @@ layers configuration."
     (define-key evil-normal-state-map "U" 'undo-tree-redo)
 
     ;; Keybinding remapping
-    (evil-leader/set-key "ff" 'helm-find-files)
+    ;; (evil-leader/set-key "ff" 'helm-find-files)
     (evil-leader/set-key "fF" 'sudo-edit)
 
     ;; org-babel
@@ -205,7 +207,7 @@ layers configuration."
             (newline-mark 10 [182 10]) ; newlne
             (tab-mark 9 [9655 9] [92 9]) ; tab
             ))
-    (when (display-graphic-p) (spacemacs/toggle-whitespaces-globally))
+    (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
 
     ;; centered cursor
     (spacemacs/toggle-centered-point-globally)
@@ -229,7 +231,18 @@ layers configuration."
     (mapc (lambda (x) (push x evil-emacs-state-exit-hook))
           evil-insert-state-exit-hook)
 
-    ;; spacemacs mode color changing
+    ;; spacemacs mode color changing    
+    (defvar spacemacs-evil-cursor-colors '((normal . "Red")
+                                           (insert . "chartreuse3")
+                                           (emacs  . "tomato")
+                                           (evilified . "LightGoldenrod3")
+                                           (visual . "chocolate")
+                                           (motion . "plum3")
+                                           (lisp   . "HotPink1")
+                                           (iedit  . "SpringGreen4")
+                                           (iedit-insert  . "SpringGreen3"))
+      "Colors assigned to evil states.")
+
     (setq evil-normal-state-cursor '("Red" box))
     (spacemacs/defface-state-color 'normal "Red")
     (setq evil-emacs-state-cursor '("tomato" (bar . 2)))
@@ -240,6 +253,7 @@ layers configuration."
     (spacemacs/defface-state-color 'iedit "SpringGreen4")
     (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
     (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
+
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
