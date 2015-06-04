@@ -5112,7 +5112,7 @@ Also affects 'linum-mode' background."
 
    `(whitespace-space-after-tab
      ((,class (:background unspecified
-                           :foreground ,orange
+                           :foreground ,apples-whitespace
                            :inverse-video t
                            :weight bold))
       (,terminal-class (:background unspecified

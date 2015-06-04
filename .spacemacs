@@ -14,8 +14,15 @@
                                               c-c++ cscope regex extra-langs haskell
                                               auto-completion syntax-checking org
                                               ztree mail chat other erc emacs-lisp shell
-                                              gtags ibuffer games xkcd pandoc rust semantic sql
+                                               gtags ibuffer games xkcd pandoc rust semantic sql
                                               search-engine)
+
+   ;; List of additional packages that will be installed wihout being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages then consider to create a layer, you can also put the
+   ;; configuration in `dotspacemacs/config'.
+   dotspacemacs-additional-packages '()
+
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -61,14 +68,21 @@ before layers configuration."
                                  :powerline-scale 1.1)
      ;; The leader key
      dotspacemacs-leader-key "SPC"
+     ;; The leader key accessible in `emacs state' and `insert state'
+     dotspacemacs-emacs-leader-key "M-m"
      ;; Major mode leader key is a shortcut key which is the equivalent of
      ;; pressing `<leader> m`. Set it to `nil` to disable it.
      dotspacemacs-major-mode-leader-key ","
+     ;; Major mode leader key accessible in `emacs state' and `insert state'
+     dotspacemacs-major-mode-emacs-leader-key "C-M-m"
      ;; The command key used for Evil commands (ex-commands) and
      ;; Emacs commands (M-x).
      ;; By default the command key is `:' so ex-commands are executed like in Vim
      ;; with `:' and Emacs commands are executed with `<leader> :'.
      dotspacemacs-command-key ":"
+     ;; If non nil then `ido' replaces `helm' for some commands. For now only
+     ;; `find-files' (SPC f f) is replaced.
+     dotspacemacs-use-ido nil
      ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
      ;; several times cycle between the kill ring content.
      dotspacemacs-enable-paste-micro-state t
@@ -92,11 +106,11 @@ before layers configuration."
      ;; A value from the range (0..100), in increasing opacity, which describes
      ;; the transparency level of a frame when it's active or selected.
      ;; Transparency can be toggled through `toggle-transparency'.
-     dotspacemacs-active-transparency 90
+     dotspacemacs-active-transparency 97
      ;; A value from the range (0..100), in increasing opacity, which describes
      ;; the transparency level of a frame when it's inactive or deselected.
      ;; Transparency can be toggled through `toggle-transparency'.
-     dotspacemacs-inactive-transparency 90
+     dotspacemacs-inactive-transparency 97
      ;; If non nil unicode symbols are displayed in the mode line.
      dotspacemacs-mode-line-unicode-symbols t
      ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -105,8 +119,14 @@ before layers configuration."
      dotspacemacs-smooth-scrolling t
      ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
      dotspacemacs-smartparens-strict-mode nil
+     ;; Select a scope to highlight delimiters. Possible value is `all',
+     ;; `current' or `nil'. Default is `all'
+     dotspacemacs-highlight-delimiters 'all
      ;; If non nil advises quit functions to keep server open when quitting.
      dotspacemacs-persistent-server nil
+     ;; List of search tool executable names. Spacemacs uses the first installed
+     ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
+     dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
      ;; The default package repository used if no explicit repository has been
      ;; specified with an installed package.
      ;; Not used for now.
@@ -164,7 +184,6 @@ layers configuration."
     (define-key evil-normal-state-map "U" 'undo-tree-redo)
 
     ;; Keybinding remapping
-    ;; (evil-leader/set-key "ff" 'helm-find-files)
     (evil-leader/set-key "fF" 'sudo-edit)
 
     ;; org-babel
@@ -197,52 +216,28 @@ layers configuration."
 
     ;; whitespace
     (evil-leader/set-key "ofw" 'fixup-whitespace)
-    (evil-leader/set-key "ofc" 'whitespace-cleanup)
     (evil-leader/set-key "ofl" 'delete-blank-lines)
     (setq whitespace-style
           '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
     (setq whitespace-display-mappings
           '(
-            (space-mark 32 [183] [46]) ; normal space
+            ;; (space-mark 32 [183] [46]) ; normal space
             (newline-mark 10 [182 10]) ; newlne
             (tab-mark 9 [9655 9] [92 9]) ; tab
             ))
     (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
 
-    ;; centered cursor
-    (spacemacs/toggle-centered-point-globally)
-    
-    ;; frame transparency
-    (when (display-graphic-p)
-      (progn (setq dotspacemacs-active-transparency 97
-                   dotspacemacs-inactive-transparency 97)))
-
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
 
-    ;; replace insert with emacs mode
-    ;; https://github.com/syl20bnr/spacemacs/issues/1244
-    (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+    ;; centered cursor
+    (spacemacs/toggle-centered-point-globally)
 
-    (defalias 'evil-insert-state 'evil-emacs-state)
-    (mapc (lambda (x) (push x evil-emacs-state-entry-hook))
-          evil-insert-state-entry-hook)
-    (mapc (lambda (x) (push x evil-emacs-state-exit-hook))
-          evil-insert-state-exit-hook)
+    ;; Replace insert with emacs state
+    (spacemacs/toggle-holy-mode)
 
-    ;; spacemacs mode color changing    
-    (defvar spacemacs-evil-cursor-colors '((normal . "Red")
-                                           (insert . "chartreuse3")
-                                           (emacs  . "tomato")
-                                           (evilified . "LightGoldenrod3")
-                                           (visual . "chocolate")
-                                           (motion . "plum3")
-                                           (lisp   . "HotPink1")
-                                           (iedit  . "SpringGreen4")
-                                           (iedit-insert  . "SpringGreen3"))
-      "Colors assigned to evil states.")
-
+    ;; Custom state colors
     (setq evil-normal-state-cursor '("Red" box))
     (spacemacs/defface-state-color 'normal "Red")
     (setq evil-emacs-state-cursor '("tomato" (bar . 2)))
@@ -253,7 +248,6 @@ layers configuration."
     (spacemacs/defface-state-color 'iedit "SpringGreen4")
     (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
     (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
-
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
