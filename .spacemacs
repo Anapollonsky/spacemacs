@@ -161,11 +161,22 @@ layers configuration."
     (prefer-coding-system 'utf-8)
 
     ;; Backups
-    (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-    (setq delete-old-versions -1)
-    (setq version-control t)
-    (setq vc-make-backup-files t)
-    (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+    ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+    (defvar --backup-directory (concat user-emacs-directory "backups"))
+    (if (not (file-exists-p --backup-directory))
+            (make-directory --backup-directory t))
+    (setq backup-directory-alist `(("." . ,--backup-directory)))
+    (setq make-backup-files t    ; backup of a file the first time it is saved.
+          backup-by-copying t    ; don't clobber symlinks
+          version-control t      ; version numbers for backup files
+          delete-old-versions t  ; delete excess backup files silently
+          delete-by-moving-to-trash t
+          kept-old-versions 6    ; oldest versions to keep when a new numbered backup is made
+          kept-new-versions 9    ; newest versions to keep when a new numbered backup is made
+          auto-save-default t    ; auto-save every buffer that visits a file
+          auto-save-timeout 20   ; number of seconds idle time before auto-save (default: 30)
+          auto-save-interval 200 ; number of keystrokes between auto-saves (default: 300)
+          vc-make-backup-files t)
 
     ;; History
     (setq savehist-file "~/.emacs.d/savehist")
@@ -331,3 +342,26 @@ layers configuration."
     (evil-leader/set-key "ocP" 'run-pylint) 
 
     ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(ccm-ignored-commands
+   (quote
+    (mouse-drag-region mouse-set-point widget-button-click scroll-bar-toolkit-scroll evil-mouse-drag-region)))
+ '(ccm-recenter-at-end-of-file t)
+ '(paradox-github-token t)
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
