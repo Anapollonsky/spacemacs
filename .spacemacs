@@ -164,7 +164,7 @@ layers configuration."
     ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
     (defvar --backup-directory (concat user-emacs-directory "backups"))
     (if (not (file-exists-p --backup-directory))
-            (make-directory --backup-directory t))
+        (make-directory --backup-directory t))
     (setq backup-directory-alist `(("." . ,--backup-directory)))
     (setq make-backup-files t    ; backup of a file the first time it is saved.
           backup-by-copying t    ; don't clobber symlinks
@@ -245,6 +245,10 @@ layers configuration."
     ;; centered cursor
     (spacemacs/toggle-centered-point-globally)
 
+    ;; indent guide
+    (setq indent-guide-recursive t
+          indent-guide-char "┊")
+
     ;; Replace insert with emacs state
     (spacemacs/toggle-holy-mode)
 
@@ -291,7 +295,7 @@ layers configuration."
     (setq smtpmail-stream-type 'ssl)
     (setq smtpmail-smtp-server "smtp.gmail.com")
     (setq smtpmail-smtp-service 465)
-          
+    
     ;; mu4e
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
     (use-package mu4e)
