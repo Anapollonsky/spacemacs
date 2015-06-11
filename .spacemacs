@@ -232,11 +232,12 @@ layers configuration."
           '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
     (setq whitespace-display-mappings
           '(
-            ;; (space-mark 32 [183] [46]) ; normal space
-            (newline-mark 10 [182 10]) ; newlne
+            (space-mark 32 [183] [46]) ; normal space
+            (newline-mark 10 [182 10]) ; newline
             (tab-mark 9 [9655 9] [92 9]) ; tab
             ))
     (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
+    (set-face-foreground 'whitespace-space "#282828") ;; Something is messing this up, changing it to theme orange
 
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
