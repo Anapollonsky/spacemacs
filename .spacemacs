@@ -226,8 +226,6 @@ layers configuration."
     (setq org-agenda-files '("~/org/agenda.org" "~/org/notes.org"))
 
     ;; whitespace
-    (evil-leader/set-key "ofw" 'fixup-whitespace)
-    (evil-leader/set-key "ofl" 'delete-blank-lines)
     (setq whitespace-style
           '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
     (setq whitespace-display-mappings
@@ -239,12 +237,24 @@ layers configuration."
     (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
     (set-face-foreground 'whitespace-space "#282828") ;; Something is messing this up, changing it to theme orange
 
+    (evil-leader/set-key "ofw" 'fixup-whitespace)
+    (evil-leader/set-key "ofl" 'delete-blank-lines)
+
+    ;; mark navigation
+    (evil-leader/set-key "ono" 'pop-to-mark-command)
+    (evil-leader/set-key "ong" 'pop-global-mark)
+    (evil-leader/set-key "onu" 'push-mark-command)
+     
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
 
     ;; centered cursor
     (spacemacs/toggle-centered-point-globally)
+
+    ;; disallow unbalanced parens
+    ;; (smartparens-global-strict-mode)
+    ;; (setq-default dotspacemacs-smartparens-strict-mode )
 
     ;; indent guide
     (setq indent-guide-recursive t
