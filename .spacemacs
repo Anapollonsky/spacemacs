@@ -207,6 +207,8 @@ layers configuration."
     (org-babel-do-load-languages ;; Parse babel blocks for these languages
      'org-babel-load-languages
      '((C . t)
+       (java . t)
+       (haskell . t)
        (python . t)
        (lisp . t)
        (latex . t)
@@ -364,3 +366,28 @@ layers configuration."
     (evil-leader/set-key "ocP" 'run-pylint) 
 
     ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(ccm-ignored-commands
+   (quote
+    (mouse-drag-region mouse-set-point widget-button-click scroll-bar-toolkit-scroll evil-mouse-drag-region)))
+ '(ccm-recenter-at-end-of-file t)
+ '(custom-safe-themes
+   (quote
+    ("4dd1b115bc46c0f998e4526a3b546985ebd35685de09bc4c84297971c822750e" default)))
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
