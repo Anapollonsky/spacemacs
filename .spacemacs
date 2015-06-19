@@ -21,7 +21,7 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(wgrep)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -189,10 +189,16 @@ layers configuration."
             search-ring
             regexp-search-ring))
 
+    ;; Configure additional packages
+    (use-package wgrep)
+
     ;; Undo-Tree
     (setq undo-tree-auto-save-history t)
     (setq undo-tree-visualizer-timestamps t)
     (define-key evil-normal-state-map "U" 'undo-tree-redo)
+
+    ;; yasnippet
+    (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
 
     ;; Keybinding remapping
     (evil-leader/set-key "fF" 'sudo-edit)
@@ -244,7 +250,8 @@ layers configuration."
     (evil-leader/set-key "ono" 'pop-to-mark-command)
     (evil-leader/set-key "ong" 'pop-global-mark)
     (evil-leader/set-key "onu" 'push-mark-command)
-     
+    (setq global-mark-ring-max 128)
+
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
