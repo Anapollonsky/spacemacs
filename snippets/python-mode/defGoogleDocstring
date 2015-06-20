@@ -11,29 +11,29 @@ def ${1:name}($2):
     """
     Args:
         $3${2:$
-(let* ((indent
-        (concat "\n" (make-string (current-column) 32)))
-       (args
-        (mapconcat
-         '(lambda (x)
-            (if (not (or (string= (nth 0 x) "")
-                         (string= (nth 0 x) "self")
-                         (string= (nth 0 x) "cls")))
-                (concat (nth 0 x) " (): ")))
-         (mapcar
-          '(lambda (x)
-             (mapcar
-              '(lambda (x)
-                 (replace-regexp-in-string "[[:blank:]]*$" ""
-                                           (replace-regexp-in-string "^[[:blank:]]*" "" x)))
-              x))
-          (mapcar '(lambda (x) (split-string x "="))
-                  (split-string yas-text ",")))
-         indent)))
-  args)
+          (let* ((indent
+                  (concat "\n" (make-string (current-column) 32)))
+                 (args
+                  (mapconcat
+                   '(lambda (x)
+                      (if (not (or (string= (nth 0 x) "")
+                                   (string= (nth 0 x) "self")
+                                   (string= (nth 0 x) "cls")))
+                          (concat (nth 0 x) " (): " indent)))
+                   (mapcar
+                    '(lambda (x)
+                       (mapcar
+                        '(lambda (x)
+                           (replace-regexp-in-string "[[:blank:]]*$" ""
+                                                     (replace-regexp-in-string "^[[:blank:]]*" "" x)))
+                        x))
+                    (mapcar '(lambda (x) (split-string x "="))
+                            (split-string yas-text ",")))
+                   "")))
+            args)
         }
     Returns:
-        $4: ${5:description}
+        ${4:type}: ${5:description}
     """
     $0
         
