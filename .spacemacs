@@ -10,12 +10,12 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git perspectives slime python
-                                              c-c++ cscope regex extra-langs haskell
-                                              auto-completion syntax-checking org
+   dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python
+                                              c-c++ cscope erlang elixir regex extra-langs haskell
+                                              auto-completion syntax-checking org latex
                                               ztree mail chat other erc emacs-lisp shell
-                                               gtags ibuffer games xkcd pandoc rust semantic sql
-                                              search-engine)
+                                              gtags ibuffer games xkcd pandoc rust semantic sql
+                                              search-engine version-control)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
