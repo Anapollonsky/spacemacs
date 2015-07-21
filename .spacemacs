@@ -261,6 +261,15 @@ layers configuration."
     ;; centered cursor
     (spacemacs/toggle-centered-point-globally)
 
+    ;; delete more whitespace
+    (spacemacs/toggle-hungry-delete)
+
+    ;; smart parentheses
+    (spacemacs/toggle-smartparens-globally)
+
+    ;; colored parenthesis
+    (rainbow-delimiters-mode)
+
     ;; disallow unbalanced parens
     ;; (smartparens-global-strict-mode)
     ;; (setq-default dotspacemacs-smartparens-strict-mode )
