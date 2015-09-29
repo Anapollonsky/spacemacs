@@ -3,19 +3,25 @@
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration."
+  "Configuration Layers declaration.
+You should not put any user code in this function besides modifying the variable
+values."
   (setq-default
+   ;; Base distribution to use. This is a layer contained in the directory
+   ;; `+distribution'. For now available distributions are `spacemacs-base'
+   ;; or `spacemacs'. (default 'spacemacs)
+   dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python
+   dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python scala
                                               c-c++ cscope erlang elixir regex extra-langs haskell
-                                              auto-completion syntax-checking org latex
-                                              ztree mail chat other erc emacs-lisp shell
-                                              gtags ibuffer games xkcd pandoc rust semantic sql
-                                              search-engine version-control)
+                                              auto-completion syntax-checking org latex javascript
+                                              ztree mail chat other erc emacs-lisp shell yaml
+                                              gtags ibuffer games pandoc semantic sql cscope
+                                              search-engine version-control spell-checking)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -27,13 +33,15 @@
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'
+   ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
-before layers configuration."
+before layers configuration.
+You should not put any user code in there besides modifying the variable
+values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (progn
@@ -49,6 +57,10 @@ before layers configuration."
      ;; If the value is nil then no banner is displayed.
      ;; dotspacemacs-startup-banner 'official
      dotspacemacs-startup-banner 'official
+     ;; List of items to show in the startup buffer. If nil it is disabled.
+     ;; Possible values are: `recents' `bookmarks' `projects'.
+     ;; (default '(recents projects))
+     dotspacemacs-startup-lists '(recents projects)
      ;; List of themes, the first of the list is loaded when spacemacs starts.
      ;; Press <SPC> T n to cycle to the next theme in the list (works great
      ;; with 2 themes variants, one dark and one light)
@@ -80,15 +92,35 @@ before layers configuration."
      ;; By default the command key is `:' so ex-commands are executed like in Vim
      ;; with `:' and Emacs commands are executed with `<leader> :'.
      dotspacemacs-command-key ":"
+     ;; If non nil `Y' is remapped to `y$'. (default t)
+     dotspacemacs-remap-Y-to-y$ t
+     ;; Location where to auto-save files. Possible values are `original' to
+     ;; auto-save the file in-place, `cache' to auto-save the file to another
+     ;; file stored in the cache directory and `nil' to disable auto-saving.
+     ;; (default 'cache)
+     dotspacemacs-auto-save-file-location 'cache
      ;; If non nil then `ido' replaces `helm' for some commands. For now only
      ;; `find-files' (SPC f f) is replaced.
      dotspacemacs-use-ido nil
+     ;; If non nil, `helm' will try to miminimize the space it uses. (default nil)
+     dotspacemacs-helm-resize nil
+     ;; if non nil, the helm header is hidden when there is only one source.
+     ;; (default nil)
+     dotspacemacs-helm-no-header nil
+     ;; define the position to display `helm', options are `bottom', `top',
+     ;; `left', or `right'. (default 'bottom)
+     dotspacemacs-helm-position 'bottom
      ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
      ;; several times cycle between the kill ring content.
      dotspacemacs-enable-paste-micro-state t
-     ;; Guide-key delay in seconds. The Guide-key is the popup buffer listing
-     ;; the commands bound to the current keystrokes.
-     dotspacemacs-guide-key-delay 0.4
+     ;; Which-key delay in seconds. The which-key buffer is the popup listing
+     ;; the commands bound to the current keystroke sequence. (default 0.4)
+     dotspacemacs-which-key-delay 0.4
+     ;; Which-key frame position. Possible values are `right', `bottom' and
+     ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
+     ;; right; if there is insufficient space it displays it at the bottom.
+     ;; (default 'bottom)
+     dotspacemacs-which-key-position 'bottom
      ;; If non nil a progress bar is displayed when spacemacs is loading. This
      ;; may increase the boot time on some systems and emacs builds, set it to
      ;; nil ;; to boost the loading time.
@@ -292,6 +324,31 @@ layers configuration."
     ;; (spacemacs/defface-state-color 'iedit "SpringGreen4")
     ;; (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
     ;; (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
+    ;; (setq spacemacs-evil-cursors '(("normal" "Red" box)
+    ;;                                ("insert" "tomato" (bar . 2))
+    ;;                                ("emacs" "tomato" (bar . 2))
+    ;;                                ("hybrid" "tomato" (bar . 2))
+    ;;                                ("replace" "chocolate" (hbar . 2))
+    ;;                                ("evilified" "LightGoldenrod3" box)
+    ;;                                ("visual" "chocolate" box)
+    ;;                                ("motion" "plum3" box)
+    ;;                                ("lisp" "HotPink1" box)
+    ;;                                ("iedit" "SpringGreen4" box)
+    ;;                                ("iedit-insert" "SpringGreen3" (bar . 2)))
+    ;;   "Colors assigned to evil states with cursor definitions.")
+
+    ;; (loop for (state color cursor) in spacemacs-evil-cursors
+    ;;       do
+    ;;       (eval `(defface ,(intern (format "spacemacs-%s-face" state))
+    ;;                `((t (:background ,color
+    ;;                                  :foreground ,(face-background 'mode-line)
+    ;;                                  :box ,(face-attribute 'mode-line :box)
+    ;;                                  :inherit 'mode-line)))
+    ;;                (format "%s state face." state)
+    ;;                :group 'spacemacs))
+    ;;       (eval `(setq ,(intern (format "evil-%s-state-cursor" state))
+    ;;                    (list (when dotspacemacs-colorize-cursor-according-to-state color)
+    ;;                          cursor))))
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
