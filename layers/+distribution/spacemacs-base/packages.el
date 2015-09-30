@@ -145,17 +145,17 @@
   (use-package evil
     :init
     (progn
-      (defvar spacemacs-evil-cursors '(("normal" "DarkGoldenrod2" box)
-                                       ("insert" "chartreuse3" (bar . 2))
-                                       ("emacs" "SkyBlue2" box)
-                                       ("hybrid" "SkyBlue2" (bar . 2))
+      (defvar spacemacs-evil-cursors '(("normal" "Red" box)
+                                       ("insert" "tomato" (bar . 2))
+                                       ("emacs" "tomato" (bar . 2))
+                                       ("hybrid" "tomato" (bar . 2))
                                        ("replace" "chocolate" (hbar . 2))
                                        ("evilified" "LightGoldenrod3" box)
-                                       ("visual" "gray" (hbar . 2))
+                                       ("visual" "chocolate" box)
                                        ("motion" "plum3" box)
                                        ("lisp" "HotPink1" box)
-                                       ("iedit" "firebrick1" box)
-                                       ("iedit-insert" "firebrick1" (bar . 2)))
+                                       ("iedit" "SpringGreen4" box)
+                                       ("iedit-insert" "SpringGreen3" (bar . 2)))
         "Colors assigned to evil states with cursor definitions.")
 
       (loop for (state color cursor) in spacemacs-evil-cursors

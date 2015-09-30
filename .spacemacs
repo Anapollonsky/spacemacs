@@ -324,31 +324,6 @@ layers configuration."
     ;; (spacemacs/defface-state-color 'iedit "SpringGreen4")
     ;; (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
     ;; (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
-    ;; (setq spacemacs-evil-cursors '(("normal" "Red" box)
-    ;;                                ("insert" "tomato" (bar . 2))
-    ;;                                ("emacs" "tomato" (bar . 2))
-    ;;                                ("hybrid" "tomato" (bar . 2))
-    ;;                                ("replace" "chocolate" (hbar . 2))
-    ;;                                ("evilified" "LightGoldenrod3" box)
-    ;;                                ("visual" "chocolate" box)
-    ;;                                ("motion" "plum3" box)
-    ;;                                ("lisp" "HotPink1" box)
-    ;;                                ("iedit" "SpringGreen4" box)
-    ;;                                ("iedit-insert" "SpringGreen3" (bar . 2)))
-    ;;   "Colors assigned to evil states with cursor definitions.")
-
-    ;; (loop for (state color cursor) in spacemacs-evil-cursors
-    ;;       do
-    ;;       (eval `(defface ,(intern (format "spacemacs-%s-face" state))
-    ;;                `((t (:background ,color
-    ;;                                  :foreground ,(face-background 'mode-line)
-    ;;                                  :box ,(face-attribute 'mode-line :box)
-    ;;                                  :inherit 'mode-line)))
-    ;;                (format "%s state face." state)
-    ;;                :group 'spacemacs))
-    ;;       (eval `(setq ,(intern (format "evil-%s-state-cursor" state))
-    ;;                    (list (when dotspacemacs-colorize-cursor-according-to-state color)
-    ;;                          cursor))))
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
