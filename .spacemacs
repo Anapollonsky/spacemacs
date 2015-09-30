@@ -17,7 +17,7 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python scala
-                                       c-c++ cscope erlang elixir regex extra-langs haskell
+                                       c-c++ erlang elixir regex extra-langs haskell
                                        auto-completion- syntax-checking org latex javascript
                                        ztree mail chat other erc emacs-lisp shell yaml
                                        gtags ibuffer games pandoc semantic sql cscope
