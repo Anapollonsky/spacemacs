@@ -17,17 +17,17 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python scala
-                                              c-c++ cscope erlang elixir regex extra-langs haskell
-                                              auto-completion syntax-checking org latex javascript
-                                              ztree mail chat other erc emacs-lisp shell yaml
-                                              gtags ibuffer games pandoc semantic sql cscope
-                                              search-engine version-control spell-checking)
+                                       c-c++ cscope erlang elixir regex extra-langs haskell
+                                       auto-completion- syntax-checking org latex javascript
+                                       ztree mail chat other erc emacs-lisp shell yaml
+                                       gtags ibuffer games pandoc semantic sql cscope
+                                       search-engine version-control spell-checking jabber)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(wgrep)
+   dotspacemacs-additional-packages '(wgrep angularjs-mode)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -168,7 +168,7 @@ values."
     )
   )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
@@ -197,8 +197,8 @@ layers configuration."
     (defvar --backup-directory (concat user-emacs-directory "backups"))
     (if (not (file-exists-p --backup-directory))
         (make-directory --backup-directory t))
-    (setq backup-directory-alist `(("." . ,--backup-directory)))
-    (setq make-backup-files t    ; backup of a file the first time it is saved.
+    (setq backup-directory-alist `(("." . ,--backup-directory))
+          make-backup-files t    ; backup of a file the first time it is saved.
           backup-by-copying t    ; don't clobber symlinks
           version-control t      ; version numbers for backup files
           delete-old-versions t  ; delete excess backup files silently
