@@ -20,14 +20,14 @@ values."
                                        c-c++ erlang elixir regex extra-langs haskell
                                        auto-completion- syntax-checking org latex javascript
                                        ztree mail chat other erc emacs-lisp shell yaml
-                                       gtags ibuffer games pandoc semantic sql cscope
+                                       gtags ibuffer games pandoc semantic sql cscope java
                                        search-engine version-control spell-checking jabber)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(wgrep angularjs-mode)
+   dotspacemacs-additional-packages '(wgrep angularjs-mode json-reformat)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -377,7 +377,9 @@ layers configuration."
     (evil-leader/set-key "ozt" 'ztree-dir)
     (evil-leader/set-key "ozd" 'ztree-diff)
 
-    ;; syntax checking
+    ;; java
+    (setq eclim-eclipse-dirs '("~/source/eclipse")
+          eclim-executable "~/source/eclipse/eclim")
     
     ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs
     (defun run-cppcheck (file)
