@@ -1018,8 +1018,8 @@ Also affects 'linum-mode' background."
 
    ;; auto highlight symbol
    `(ahs-definition-face
-     ((,class (:foreground ,magenta
-                           :background unspecified
+     ((,class (:foreground unspecified 
+                           :background ,gray-l
                            :slant normal))
       (,terminal-class (:foreground ,terminal-magenta
                                     :background unspecified

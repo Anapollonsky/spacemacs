@@ -290,26 +290,24 @@ layers configuration."
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
 
-    ;; centered cursor
-    (spacemacs/toggle-centered-point-globally)
-
-    ;; delete more whitespace
-    (spacemacs/toggle-hungry-delete)
-
-    ;; smart parentheses
-    (spacemacs/toggle-smartparens-globally)
-
     ;; colored parenthesis
     (rainbow-delimiters-mode)
 
-    ;; symbol autohighlighting
-    (spacemacs/toggle-automatic-symbol-highlight-on)
-
-    ;; indentation highlighting
-    (spacemacs/toggle-highlight-indentation-on)
-
     ;; autocompletion
-    (global-company-mode)
+    (global-company-mode 1)
+
+    ;; Replace insert with emacs state
+    (spacemacs/toggle-holy-mode-on)
+
+    ;; misc
+    (spacemacs/toggle-hungry-delete-on)
+    (spacemacs/toggle-centered-point-globally-on)
+    (spacemacs/toggle-automatic-symbol-highlight-on)
+    (spacemacs/toggle-highlight-indentation-on)
+    (spacemacs/toggle-syntax-checking-on)
+    (spacemacs/toggle-spelling-checking-on)
+    (spacemacs/toggle-semantic-stickyfunc-globally-on)
+    (spacemacs/toggle-smartparens-globally)
 
     ;; disallow unbalanced parens
     ;; (smartparens-global-strict-mode)
@@ -318,9 +316,6 @@ layers configuration."
     ;; indent guide
     (setq indent-guide-recursive t
           indent-guide-char "┊")
-
-    ;; Replace insert with emacs state
-    (spacemacs/toggle-holy-mode)
 
     ;; Custom state colors
     ;; (setq evil-normal-state-cursor '("Red" box))
