@@ -302,6 +302,15 @@ layers configuration."
     ;; colored parenthesis
     (rainbow-delimiters-mode)
 
+    ;; symbol autohighlighting
+    (spacemacs/toggle-automatic-symbol-highlight-on)
+
+    ;; indentation highlighting
+    (spacemacs/toggle-highlight-indentation-on)
+
+    ;; autocompletion
+    (global-company-mode)
+
     ;; disallow unbalanced parens
     ;; (smartparens-global-strict-mode)
     ;; (setq-default dotspacemacs-smartparens-strict-mode )
