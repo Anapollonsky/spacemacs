@@ -27,7 +27,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(wgrep angularjs-mode json-reformat)
+   dotspacemacs-additional-packages '(wgrep angularjs-mode groovy-mode ag)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
