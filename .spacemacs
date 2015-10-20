@@ -307,8 +307,8 @@ layers configuration."
     (spacemacs/toggle-syntax-checking-on)
     (spacemacs/toggle-spelling-checking-on)
     (spacemacs/toggle-semantic-stickyfunc-globally-on)
-    (spacemacs/toggle-smartparens-globally)
-    (global-subword-mode 1)
+    (spacemacs/toggle-smartparens-globally-on)
+    (spacemacs/toggle-camel-case-motion-globally-on)
 
     ;; disallow unbalanced parens
     ;; (smartparens-global-strict-mode)
