@@ -1032,26 +1032,26 @@ Also affects 'linum-mode' background."
                                     :background ,terminal-magenta))))
 
    `(ahs-face
-     ((,class (:foreground ,magenta
-                           :background unspecified))
+     ((,class (:foreground unspecified 
+                           :background ,gray-l))
       (,terminal-class (:foreground ,terminal-magenta
                                     :background unspecified))))
 
    `(ahs-plugin-bod-face
-     ((,class (:foreground ,magenta
-                           :background unspecified ))
+     ((,class (:foreground unspecified
+                           :background ,gray-l))
       (,terminal-class (:foreground ,terminal-magenta
                                     :background unspecified ))))
 
    `(ahs-plugin-defalt-face
-     ((,class (:foreground ,magenta
-                           :background unspecified))
+     ((,class (:foreground unspecified
+                           :background ,gray-l))
       (,terminal-class (:foreground ,terminal-magenta
                                     :background unspecified))))
 
    `(ahs-plugin-whole-buffer-face
-     ((,class (:foreground ,magenta
-                           :background unspecified))
+     ((,class (:foreground unspecified
+                           :background ,gray-l))
       (,terminal-class (:foreground ,terminal-magenta
                                     :background unspecified))))
 

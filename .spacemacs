@@ -301,13 +301,13 @@ layers configuration."
     (highlight-parentheses-mode 1)
 
     ;; Replace insert with emacs state
-    (spacemacs/toggle-holy-mode-on)
+    (spacemacs/toggle-hybrid-mode-on)
 
     ;; misc
     (spacemacs/toggle-hungry-delete-on)
     (spacemacs/toggle-centered-point-globally-on)
     (spacemacs/toggle-automatic-symbol-highlight-on)
-    (spacemacs/toggle-auto-completion-on)
+    (global-auto-complete-mode 1)
     (spacemacs/toggle-highlight-indentation-on)
     (spacemacs/toggle-syntax-checking-on)
     (spacemacs/toggle-spelling-checking-on)
