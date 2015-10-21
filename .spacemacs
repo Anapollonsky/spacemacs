@@ -178,9 +178,10 @@ layers configuration."
     (setf user-mail-address "Anapollonsky@gmail.com")
 
     ;; browser
-    (setq browse-url-generic-program (or (executable-find "firefox")
+    (setq browse-url-generic-program (or (executable-find "google-chrome")
                                          (executable-find "google-chrome-stable")
-                                         (executable-find "chromium")))
+                                         (executable-find "chromium")
+                                         (executable-find "firefox")))
     (setq browse-url-browser-function 'browse-url-generic)
 
     ;; no dialog boxes
@@ -223,6 +224,9 @@ layers configuration."
 
     ;; Configure additional packages
     (use-package wgrep)
+    (use-package angularjs-mode)
+    (use-package groovy-mode)
+    (use-package ag)
 
     ;; Undo-Tree
     (setq undo-tree-auto-save-history t)
@@ -233,7 +237,7 @@ layers configuration."
     (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
 
     ;; Keybinding remapping
-    (evil-leader/set-key "fF" 'sudo-edit)
+    (evil-leader/set-key "fF" 'spacemacs/sudo-edit)
 
     ;; org-babel
     (org-babel-do-load-languages ;; Parse babel blocks for these languages
@@ -291,10 +295,10 @@ layers configuration."
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
 
     ;; colored parenthesis
-    (rainbow-delimiters-mode)
+    (rainbow-delimiters-mode 1)
 
-    ;; autocompletion
-    (global-company-mode 1)
+    ;; highlight matching delimiter
+    (highlight-parentheses-mode 1)
 
     ;; Replace insert with emacs state
     (spacemacs/toggle-holy-mode-on)
@@ -303,6 +307,7 @@ layers configuration."
     (spacemacs/toggle-hungry-delete-on)
     (spacemacs/toggle-centered-point-globally-on)
     (spacemacs/toggle-automatic-symbol-highlight-on)
+    (spacemacs/toggle-auto-completion-on)
     (spacemacs/toggle-highlight-indentation-on)
     (spacemacs/toggle-syntax-checking-on)
     (spacemacs/toggle-spelling-checking-on)
@@ -310,25 +315,10 @@ layers configuration."
     (spacemacs/toggle-smartparens-globally-on)
     (spacemacs/toggle-camel-case-motion-globally-on)
 
-    ;; disallow unbalanced parens
-    ;; (smartparens-global-strict-mode)
-    ;; (setq-default dotspacemacs-smartparens-strict-mode )
 
     ;; indent guide
     (setq indent-guide-recursive t
           indent-guide-char "┊")
-
-    ;; Custom state colors
-    ;; (setq evil-normal-state-cursor '("Red" box))
-    ;; (spacemacs/defface-state-color 'normal "Red")
-    ;; (setq evil-emacs-state-cursor '("tomato" (bar . 2)))
-    ;; (spacemacs/defface-state-color 'emacs "tomato")
-    ;; (setq evil-visual-state-cursor '("chocolate" box))
-    ;; (spacemacs/defface-state-color 'visual "chocolate")
-    ;; (setq evil-iedit-state-cursor '("SpringGreen4" box))
-    ;; (spacemacs/defface-state-color 'iedit "SpringGreen4")
-    ;; (setq evil-iedit-insert-state-cursor '("SpringGreen3" (bar . 2)))
-    ;; (spacemacs/defface-state-color 'iedit-insert "SpringGreen3")
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
@@ -365,7 +355,6 @@ layers configuration."
     ;; mu4e
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
     (use-package mu4e)
-
     (setq
      mu4e-maildir       "~/.mail/gmail"   ;; top-level Maildir
      mu4e-sent-folder   "/Sent"       ;; folder for sent messages
@@ -375,7 +364,6 @@ layers configuration."
      mu4e-compose-signature "Andrew Apollonsky"
      mu4e-get-mail-command "mbsync gmail"
      mu4e-headers-skip-duplicates t) 
-
     (evil-leader/set-key "om" 'mu4e)
 
     ;; ztree
@@ -385,32 +373,5 @@ layers configuration."
     ;; java
     (setq eclim-eclipse-dirs '("~/source/eclipse")
           eclim-executable "~/source/eclipse/eclim")
-    
-    ;; http://stackoverflow.com/questions/11259570/integrate-cppcheck-with-emacs
-    (defun run-cppcheck (file)
-      "Run the cppcheck executable on a file/directory, with the output going
-       to a compilation buffer. Requires cppcheck."
-      (interactive
-       (list (read-file-name "File to check: " buffer-file-name)))
-      (compile
-       (concat "cppcheck --template='{file}:{line}:{severity}:{message}' --enable=missingInclude,performance,warning " file "; exit -1")))
-
-    (defun run-flake8(file)
-      "Run the flake8 executable on a file/directory, with the output going
-       to a compilation buffer. Requires flake8, available on pypi."
-      (interactive
-       (list (read-file-name "File to check: " buffer-file-name)))
-      (compile (concat "flake8 " file)))
-
-    (defun run-pylint(file)
-      "Run the pylint executable on a file/directory, with the output going
-       to a compilation buffer. Requires pylint, available on pypi."
-      (interactive
-       (list (read-file-name "File to check: " buffer-file-name)))
-      (compile (concat "pylint " file)))
-
-    (evil-leader/set-key "ocp" 'run-flake8) 
-    (evil-leader/set-key "ocC" 'run-cppcheck) 
-    (evil-leader/set-key "ocP" 'run-pylint) 
 
     ))
