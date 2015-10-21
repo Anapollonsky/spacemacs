@@ -17,11 +17,11 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python scala
-                                       c-c++ erlang elixir regex extra-langs haskell
-                                       auto-completion- syntax-checking org latex javascript
-                                       ztree mail chat other erc emacs-lisp shell yaml
-                                       gtags ibuffer games pandoc semantic sql cscope java
-                                       search-engine version-control spell-checking jabber)
+                                              c-c++ erlang elixir regex extra-langs haskell
+                                              auto-completion- syntax-checking org latex javascript
+                                              ztree mail chat other erc emacs-lisp shell yaml
+                                              gtags ibuffer games pandoc semantic sql cscope java
+                                              search-engine version-control spell-checking jabber)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -77,7 +77,7 @@ values."
                                  :size 15
                                  :weight normal
                                  :width normal
-                                 :powerline-scale 1.1)
+                                 :powerline-scale 1)
      ;; The leader key
      dotspacemacs-leader-key "SPC"
      ;; The leader key accessible in `emacs state' and `insert state'
@@ -315,7 +315,6 @@ layers configuration."
     (spacemacs/toggle-smartparens-globally-on)
     (spacemacs/toggle-camel-case-motion-globally-on)
 
-
     ;; indent guide
     (setq indent-guide-recursive t
           indent-guide-char "┊")
@@ -371,7 +370,6 @@ layers configuration."
     (evil-leader/set-key "ozd" 'ztree-diff)
 
     ;; java
-    (setq eclim-eclipse-dirs '("~/source/eclipse")
-          eclim-executable "~/source/eclipse/eclim")
-
+    (setq eclim-eclipse-dirs  "~/source/eclipse"
+          eclim-executable    "~/source/eclipse/eclim")
     ))
