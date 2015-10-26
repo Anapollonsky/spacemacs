@@ -106,7 +106,7 @@ values."
      dotspacemacs-helm-resize nil
      ;; if non nil, the helm header is hidden when there is only one source.
      ;; (default nil)
-     dotspacemacs-helm-no-header nil
+     dotspacemacs-helm-no-header 1 
      ;; define the position to display `helm', options are `bottom', `top',
      ;; `left', or `right'. (default 'bottom)
      dotspacemacs-helm-position 'bottom
@@ -163,7 +163,7 @@ values."
      ;; specified with an installed package.
      ;; Not used for now.
      dotspacemacs-default-package-repository nil)
-    ;; User initialization goes here
+     ;; User initialization goes here
 
     )
   )
@@ -307,17 +307,22 @@ layers configuration."
     (spacemacs/toggle-hungry-delete-on)
     (spacemacs/toggle-centered-point-globally-on)
     (spacemacs/toggle-automatic-symbol-highlight-on)
-    (global-auto-complete-mode 1)
     (spacemacs/toggle-highlight-indentation-on)
     (spacemacs/toggle-syntax-checking-on)
     (spacemacs/toggle-spelling-checking-on)
     (spacemacs/toggle-semantic-stickyfunc-globally-on)
     (spacemacs/toggle-smartparens-globally-on)
     (spacemacs/toggle-camel-case-motion-globally-on)
+    (global-auto-complete-mode 1)
 
     ;; indent guide
     (setq indent-guide-recursive t
           indent-guide-char "┊")
+
+
+    ;; dired
+    ;; try and guess target directory based on presence of other dired buffer
+    (setq dired-dwim-target t)
 
     ;; xml
     ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
