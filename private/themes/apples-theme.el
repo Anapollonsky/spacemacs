@@ -1485,38 +1485,38 @@ Also affects 'linum-mode' background."
       (,terminal-class (:background ,terminal-blue-lc))))
 
    `(ediff-even-diff-A
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-fg-lc ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-fg-lc ))))
 
    `(ediff-odd-diff-A
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-fg-hc ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-fg-hc ))))
 
    `(ediff-even-diff-B
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-fg-hc ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-fg-hc ))))
 
    `(ediff-odd-diff-B
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-fg-lc ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-fg-lc ))))
 
    `(ediff-even-diff-C
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-fg ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-fg ))))
 
    `(ediff-odd-diff-C
-     ((,class (:background ,apples-comments
-                           :foreground ,apples-bg ))
+     ((,class (:background ,apples-whitespace-bright
+                           :foreground unspecified ))
       (,terminal-class (:background ,terminal-apples-comments
                                     :foreground ,terminal-apples-bg ))))
 
