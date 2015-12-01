@@ -179,10 +179,14 @@ layers configuration."
     (setf user-mail-address "Anapollonsky@gmail.com")
 
     ;; browser
-    (setq browse-url-generic-program (or (executable-find "google-chrome")
-                                         (executable-find "google-chrome-stable")
-                                         (executable-find "chromium")
-                                         (executable-find "firefox")))
+    (if (eq system-type 'windows-nt)
+        (setq browse-url-browser-function 'browse-url-default-windows-browser)
+      (setq browse-url-generic-program (or (executable-find "google-chrome")
+                                           (executable-find "google-chrome-stable")
+                                           (executable-find "chromium")
+                                           (executable-find "firefox"))))
+    
+
     (setq browse-url-browser-function 'browse-url-generic)
 
     ;; no dialog boxes
