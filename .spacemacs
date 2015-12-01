@@ -16,19 +16,20 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(colors fasd git github perspectives slime python scala
-                                              c-c++ erlang elixir regex extra-langs haskell
-                                              auto-completion- syntax-checking org latex javascript
-                                              ztree mail chat other erc emacs-lisp shell yaml
-                                              gtags ibuffer games pandoc semantic sql cscope java
-                                              search-engine version-control spell-checking jabber
-                                              clojure)
+   dotspacemacs-configuration-layers '(fasd version-control git github erc shell gtags cscope pandoc
+                                              python scala c-c++ erlang elixir haskell clojure extra-langs
+                                              javascript java emacs-lisp elm slime yaml latex sql
+                                              regex colors perspectives auto-completion semantic
+                                              syntax-checking games org ibuffer spell-checking
+                                              game s search-engine jabber
+                                              ztree mail chat other)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(wgrep angularjs-mode groovy-mode ag ob-ipython syslog-mode log4j-mode edbi edbi-minor-mode company-edbi)
+dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
+                                         edbi edbi-minor-mode company-edbi)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -46,7 +47,7 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (progn
-    
+
     ;; theme
     (add-to-list 'custom-theme-load-path "~/.emacs.d/private/themes")
 
@@ -107,7 +108,7 @@ values."
      dotspacemacs-helm-resize nil
      ;; if non nil, the helm header is hidden when there is only one source.
      ;; (default nil)
-     dotspacemacs-helm-no-header 1 
+     dotspacemacs-helm-no-header 1
      ;; define the position to display `helm', options are `bottom', `top',
      ;; `left', or `right'. (default 'bottom)
      dotspacemacs-helm-position 'bottom
@@ -179,10 +180,14 @@ layers configuration."
     (setf user-mail-address "Anapollonsky@gmail.com")
 
     ;; browser
-    (setq browse-url-generic-program (or (executable-find "google-chrome")
-                                         (executable-find "google-chrome-stable")
-                                         (executable-find "chromium")
-                                         (executable-find "firefox")))
+    (if (eq system-type 'windows-nt)
+        (setq browse-url-browser-function 'browse-url-default-windows-browser)
+      (setq browse-url-generic-program (or (executable-find "google-chrome")
+                                           (executable-find "google-chrome-stable")
+                                           (executable-find "chromium")
+                                           (executable-find "firefox"))))
+
+
     (setq browse-url-browser-function 'browse-url-generic)
 
     ;; no dialog boxes
@@ -225,7 +230,6 @@ layers configuration."
 
     ;; Configure additional packages
     (use-package wgrep)
-    (use-package angularjs-mode)
     (use-package groovy-mode)
     (use-package ag)
 
@@ -326,7 +330,7 @@ layers configuration."
     (setq dired-dwim-target t)
 
     ;; xml
-    ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs 
+    ;; http://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs
     (defun pretty-print-xml-region (begin end)
       "Pretty format XML markup in region. You need to have nxml-mode
        http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
@@ -337,7 +341,7 @@ layers configuration."
       (save-excursion
         (nxml-mode)
         (goto-char begin)
-        (while (search-forward-regexp "\>[ \\t]*\<" nil t) 
+        (while (search-forward-regexp "\>[ \\t]*\<" nil t)
           (backward-char) (insert "\n"))
         (indent-region begin end))
       (message "Ah, much better!"))
@@ -349,14 +353,14 @@ layers configuration."
       (interactive "d")
       (let ((face (or (get-char-property (point) 'read-face-name)
                       (get-char-property (point) 'face))))
-        (if face (message "Face: %s" face) (message "No face at %d" pos))))   
+        (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
     ;; Send email
     (setq send-mail-function 'smtpmail-send-it)
     (setq smtpmail-stream-type 'ssl)
     (setq smtpmail-smtp-server "smtp.gmail.com")
     (setq smtpmail-smtp-service 465)
-    
+
     ;; mu4e
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
     (use-package mu4e)
@@ -368,7 +372,7 @@ layers configuration."
      mu4e-refile-folder "/archive"    ;; saved messages
      mu4e-compose-signature "Andrew Apollonsky"
      mu4e-get-mail-command "mbsync gmail"
-     mu4e-headers-skip-duplicates t) 
+     mu4e-headers-skip-duplicates t)
     (evil-leader/set-key "om" 'mu4e)
 
     ;; ztree

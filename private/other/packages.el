@@ -34,7 +34,7 @@ which require an initialization must be listed explicitly in the list.")
 (defun other/init-pdf-tools ()
   "Initialize pdf-tools"
   (use-package pdf-tools 
-    :init (pdf-tools-install)
+    :init (when (not (eq system-type 'windows-nt)) (pdf-tools-install))
     :config
     (progn
       ;; Navigate with hjkl in insert-state
