@@ -21,13 +21,14 @@ values."
                                               auto-completion- syntax-checking org latex javascript
                                               ztree mail chat other erc emacs-lisp shell yaml
                                               gtags ibuffer games pandoc semantic sql cscope java
-                                              search-engine version-control spell-checking jabber)
+                                              search-engine version-control spell-checking jabber
+                                              clojure)
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(wgrep angularjs-mode groovy-mode ag ob-ipython syslog-mode log4j-mode)
+   dotspacemacs-additional-packages '(wgrep angularjs-mode groovy-mode ag ob-ipython syslog-mode log4j-mode edbi edbi-minor-mode company-edbi)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -150,7 +151,7 @@ values."
      ;; point when it reaches the top or bottom of the screen.
      dotspacemacs-smooth-scrolling t
      ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
-     dotspacemacs-smartparens-strict-mode nil
+     dotspacemacs-smartparens-strict-mode t
      ;; Select a scope to highlight delimiters. Possible value is `all',
      ;; `current' or `nil'. Default is `all'
      dotspacemacs-highlight-delimiters 'all
@@ -374,7 +375,14 @@ layers configuration."
     (evil-leader/set-key "ozt" 'ztree-dir)
     (evil-leader/set-key "ozd" 'ztree-diff)
 
+    ;; edbi
+    (add-to-list 'company-backends 'company-edbi)
+
     ;; java
     (setq eclim-eclipse-dirs  "~/source/eclipse"
           eclim-executable    "~/source/eclipse/eclim")
+
+    ;; clojure
+    (setq clojure-enable-fancify-symbols t)
+
     ))
