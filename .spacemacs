@@ -21,7 +21,7 @@ values."
                                               javascript java emacs-lisp elm slime yaml latex sql idris
                                               regex colors perspectives auto-completion semantic
                                               syntax-checking games org ibuffer spell-checking
-                                              game s search-engine jabber
+                                              games search-engine jabber themes-megapack
                                               ztree mail chat other)
 
    ;; List of additional packages that will be installed wihout being
