@@ -66,11 +66,14 @@ values."
      ;; List of themes, the first of the list is loaded when spacemacs starts.
      ;; Press <SPC> T n to cycle to the next theme in the list (works great
      ;; with 2 themes variants, one dark and one light)
-     dotspacemacs-themes '(apples
-                           leuven
+     dotspacemacs-themes '(
+                           apples
+                           spacemacs-dark
                            monokai
+                           leuven
                            solarized-dark
-                           zenburn)
+                           zenburn
+                           )
      ;; If non nil the cursor color matches the state color.
      dotspacemacs-colorize-cursor-according-to-state t
      ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -273,19 +276,6 @@ layers configuration."
             ("q" "Quick Note" plain (file+headline (concat org-directory "/notes.org") "Quick Notes")
              "+ %?\n %i\n")))
     (setq org-agenda-files '("~/org/agenda.org" "~/org/notes.org"))
-
-    ;; whitespace
-    (setq whitespace-style
-          '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
-    (setq whitespace-display-mappings
-          '(
-            (space-mark 32 [183] [46]) ; normal space
-            (newline-mark 10 [182 10]) ; newline
-            (tab-mark 9 [9655 9] [92 9]) ; tab
-            ))
-    (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
-    (set-face-foreground 'whitespace-space "#282828") ;; Something is messing this up, changing it to theme orange
-
     (evil-leader/set-key "ofw" 'fixup-whitespace)
     (evil-leader/set-key "ofl" 'delete-blank-lines)
 
@@ -323,7 +313,6 @@ layers configuration."
     ;; indent guide
     (setq indent-guide-recursive t
           indent-guide-char "┊")
-
 
     ;; dired
     ;; try and guess target directory based on presence of other dired buffer
@@ -388,5 +377,17 @@ layers configuration."
 
     ;; clojure
     (setq clojure-enable-fancify-symbols t)
+
+    ;; whitespace
+    (setq whitespace-style
+          '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
+    (setq whitespace-display-mappings
+          '(
+            (space-mark 32 [183] [46]) ; normal space
+            (newline-mark 10 [182 10]) ; newline
+            (tab-mark 9 [9655 9] [92 9]) ; tab
+            ))
+    (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
+    (set-face-foreground 'whitespace-space "#282828") ;; Something is messing this up, changing it to theme orange
 
     ))
