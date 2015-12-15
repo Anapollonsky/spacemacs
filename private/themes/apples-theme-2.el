@@ -21,24 +21,25 @@
 
 (let ((class '((class color) (min-colors 89)))
       ;;                                        GUI       TER
-      (base          (if (display-graphic-p) "#b2b2b2" "#b2b2b2") )
+      (base          (if (display-graphic-p) "#F8F8F2" "#F8F8F2") )
       (cursor        (if (display-graphic-p) "#e3dedd" "#d0d0d0") )
-      (bg1           (if (display-graphic-p) "#292b2e" "#262626") )
-      (bg2           (if (display-graphic-p) "#212026" "#1c1c1c") )
-      (bg3           (if (display-graphic-p) "#100a14" "#121212") )
-      (bg4           (if (display-graphic-p) "#0a0814" "#080808") )
+      (bg1           (if (display-graphic-p) "#181822" "#181822") )
+      (bg2           (if (display-graphic-p) "#151518" "#151518") )
+      (bg3           (if (display-graphic-p) "#101014" "#101014") )
+      (bg4           (if (display-graphic-p) "#0A0A10" "#0A0A10") )
+      (hi-line       (if (display-graphic-p) "#303038" "#303038") )
       (key1          (if (display-graphic-p) "#4f97d7" "#4f97d7") )
       (key2          (if (display-graphic-p) "#277bb8" "#277bb8") )
-      (builtin       (if (display-graphic-p) "#1f71ab" "#268bd2") )
-      (keyword       (if (display-graphic-p) "#237fbf" "#268bd2") )
+      (builtin       (if (display-graphic-p) "#F09090" "#F09090") )
+      (keyword       (if (display-graphic-p) "#C1F161" "#C1F161") )
       (const         (if (display-graphic-p) "#a45bad" "#d75fd7") )
-      (comment       (if (display-graphic-p) "#2aa1ae" "#008787") )
-      (comment-bg    (if (display-graphic-p) "#292e34" "#262626") )
+      (comment       (if (display-graphic-p) "#F0C000" "#F0C000") )
+      (comment-bg    (if (display-graphic-p) "#251825" "#251825") )
       (func          (if (display-graphic-p) "#bc6ec5" "#d75fd7") )
       (str           (if (display-graphic-p) "#2d9574" "#2aa198") )
       (type          (if (display-graphic-p) "#ce537a" "#df005f") )
       (comp          (if (display-graphic-p) "#c56ec3" "#d75fd7") )
-      (var           (if (display-graphic-p) "#7590db" "#8787d7") )
+      (var           (if (display-graphic-p) "#FD971F" "#FD971F") )
       (err           (if (display-graphic-p) "#e0211d" "#e0211d") )
       (war           (if (display-graphic-p) "#dc752f" "#dc752f") )
       (inf           (if (display-graphic-p) "#2f96dc" "#2f96dc") )
@@ -49,7 +50,7 @@
       (violet        (if (display-graphic-p) "#a31db1" "#af00df") )
       (red           (if (display-graphic-p) "#f2241f" "#d70000") )
       (active1       (if (display-graphic-p) "#222226" "#121212") )
-      (active2       (if (display-graphic-p) "#5d4d7a" "#444444") )
+      (active2       (if (display-graphic-p) "#444450" "#444450") )
       (ttip          (if (display-graphic-p) "#9a9aba" "#888888") )
       (ttip-sl       (if (display-graphic-p) "#6b5d85" "#333333") )
       (ttip-bg       (if (display-graphic-p) "#34323e" "#444444") )
@@ -95,7 +96,7 @@
    `(font-lock-warning-face ((,class (:foreground ,war :background ,bg1))))
    `(fringe ((,class (:background ,bg1 :foreground ,base))))
    `(highlight ((,class (:foreground ,base :background ,bg3))))
-   `(hl-line ((,class (:background ,bg2))))
+   `(hl-line ((,class (:background ,hi-line))))
    `(isearch ((,class (:bold t :foreground ,bg1 :background ,inf))))
    `(lazy-highlight ((,class (:foreground ,bg1 :background ,inf :weight normal))))
    `(link ((,class (:foreground ,comment :underline t))))
@@ -179,13 +180,13 @@
 
 ;;;;; ein
    `(ein:cell-input-area((,class (:background ,bg2))))
-   `(ein:cell-input-prompt ((,class (:foreground ,(if (eq variant 'dark) suc green)))))
+   `(ein:cell-input-prompt ((,class (:foreground , suc ))))
    `(ein:cell-output-prompt ((,class (:foreground ,err))))
    `(ein:notification-tab-normal ((,class (:foreground ,builtin))))
-   `(ein:notification-tab-selected ((,class (:foreground ,(if (eq variant 'dark) suc green) :bold t))))
+   `(ein:notification-tab-selected ((,class (:foreground ,suc  :bold t))))
 
 ;;;;; eldoc
-   `(eldoc-highlight-function-argument ((,class (:foreground ,(if (eq variant 'dark) suc red) :bold t))))
+   `(eldoc-highlight-function-argument ((,class (:foreground ,suc  :bold t))))
 
 ;;;;; enh-ruby
    `(enh-ruby-string-delimiter-face ((,class (:foreground ,str))))
@@ -197,7 +198,7 @@
    `(erc-nick-default-face ((,class (:foreground ,inf))))
    `(erc-nick-prefix-face ((,class (:foreground ,yellow))))
    `(erc-notice-face ((,class (:foreground ,str))))
-   `(erc-prompt-face ((,class (:foreground ,(if (eq variant 'dark) suc green) :bold t))))
+   `(erc-prompt-face ((,class (:foreground ,suc  :bold t))))
    `(erc-timestamp-face ((,class (:foreground ,builtin))))
 
 ;;;;; eshell
@@ -240,12 +241,12 @@
    `(git-timemachine-minibuffer-detail-face ((,class (:foreground ,inf :bold t :background ,org-h1-bg))))
 
 ;;;;; gnus
-   `(gnus-emphasis-highlight-words ((,class (:background ,(if (eq variant 'dark) err suc) :foreground ,(when (eq variant 'light) bg1)))))
+   `(gnus-emphasis-highlight-words ((,class (:background ,err))))
    `(gnus-header-content ((,class (:foreground ,keyword))))
    `(gnus-header-from ((,class (:foreground ,var))))
    `(gnus-header-name ((,class (:foreground ,comp))))
    `(gnus-header-subject ((,class (:foreground ,func :bold t))))
-   `(gnus-summary-cancelled ((,class (:background ,(if (eq variant 'dark) err suc) :foreground ,bg1))))
+   `(gnus-summary-cancelled ((,class (:background ,err :foreground ,bg1))))
 
 ;;;;; guide-key
    `(guide-key/highlight-command-face ((,class (:foreground ,base))))
@@ -301,7 +302,7 @@
 
 ;;;;; ido
    `(ido-first-match ((,class (:foreground ,comp :bold t))))
-   `(ido-only-match ((,class (:foreground ,(if (eq variant 'dark) suc red) :bold t))))
+   `(ido-only-match ((,class (:foreground ,suc :bold t))))
    `(ido-subdir ((,class (:foreground ,key1))))
    `(ido-vertical-match-face ((,class (:foreground ,comp :underline nil))))
 
@@ -374,7 +375,7 @@
    `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-height 1.1 1.0)))))
    `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :weight bold :height ,(if spacemacs-theme-org-height 1.3 1.0)))))
    `(org-agenda-date-weekend ((,class (:weight bold :foreground ,var))))
-   `(org-agenda-done ((,class (:foreground ,(if (eq variant 'dark) suc green) :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
+   `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
    `(org-agenda-structure ((,class (:weight bold :foreground ,comp))))
    `(org-block ((,class (:background ,org-cb-bg :foreground ,org-cb))))
    `(org-block-begin-line ((,class (:background ,org-cb-ln-bg :foreground ,org-cb-ln))))
@@ -387,7 +388,7 @@
    `(org-date-selected ((,class (:background ,func :foreground ,bg1) )))
    `(org-document-info-keyword ((,class (:foreground ,org-ml))))
    `(org-document-title ((,class (:foreground ,func :weight bold :height ,(if spacemacs-theme-org-height 1.4 1.0) :underline t))))
-   `(org-done ((,class (:foreground ,(if (eq variant 'dark) suc green) :bold t :overline t :background ,org-h3-bg))))
+   `(org-done ((,class (:foreground ,suc :bold t :overline t :background ,org-h3-bg))))
    `(org-ellipsis ((,class (:foreground ,builtin))))
    `(org-footnote  ((,class (:underline t :foreground ,base))))
    `(org-hide ((,class (:foreground ,base))))
@@ -421,8 +422,8 @@
 ;;;;; powerline
    `(powerline-active1 ((,class (:background ,active2 :foreground ,base))))
    `(powerline-active2 ((,class (:background ,active2 :foreground ,base))))
-   `(powerline-inactive1 ((,class (:background ,bg2 :foreground ,base))))
-   `(powerline-inactive2 ((,class (:background ,bg2 :foreground ,base))))
+   `(powerline-inactive1 ((,class (:background ,hi-line :foreground ,base))))
+   `(powerline-inactive2 ((,class (:background ,hi-line :foreground ,base))))
 
 ;;;;; rainbow-delimiters
    `(rainbow-delimiters-depth-1-face ((,class :foreground ,inf)))
@@ -442,7 +443,7 @@
 
 ;;;;; smartparens
    `(sp-pair-overlay-face ((,class (:background ,highlight :foreground nil))))
-   `(sp-show-pair-match-face ((,class (:foreground ,(if (eq variant 'dark) suc red) :weight bold :underline t))))
+   `(sp-show-pair-match-face ((,class (:foreground ,suc :weight bold :underline t))))
 
 ;;;;; term
    `(term ((,class (:foreground ,base :background ,bg1))))
