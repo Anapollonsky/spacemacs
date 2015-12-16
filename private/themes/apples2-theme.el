@@ -362,7 +362,7 @@
 ;;;;; mode-line
    `(mode-line           ((,class (:foreground ,base :background ,active1 :box (:color ,m-line-brdr :line-width 1)))))
    `(mode-line-inactive  ((,class (:foreground ,base :background ,bg1     :box (:color ,m-line-brdr :line-width 1)))))
-   `(mode-line-buffer-id ((,class (:bold t :foreground ,func))))
+   `(mode-line-buffer-id ((,class (:bold t :foreground ,suc))))
 
 ;;;;; neotree
    `(neo-dir-link-face ((,class (:foreground ,inf :weight bold))))
