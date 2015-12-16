@@ -482,6 +482,16 @@
    `(whitespace-tab ((,class (:background nil))))
    `(whitespace-trailing ((,class (:background ,err :foreground ,war))))
 
+   ;; (setq whitespace-style
+   ;;       '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
+   ;; (setq whitespace-display-mappings
+   ;;       '(
+   ;;         (space-mark 32 [183] [46]) ; normal space
+   ;;         (newline-mark 10 [182 10]) ; newline
+   ;;         (tab-mark 9 [9655 9] [92 9]) ; tab
+   ;;         ))
+   ;; (set-face-foreground 'whitespace-space "#282828") 
+
 ;;;;; other, need more work
    `(ac-completion-face ((,class (:underline t :foreground ,keyword))))
    `(ffap ((,class (:foreground ,base))))
