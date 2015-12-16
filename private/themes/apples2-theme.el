@@ -44,6 +44,8 @@
       (war           (if (display-graphic-p) "#dc752f" "#dc752f") )
       (inf           (if (display-graphic-p) "#2f96dc" "#2f96dc") )
       (suc           (if (display-graphic-p) "#86dc2f" "#86dc2f") )
+      (orange        (if (display-graphic-p) "#FD971F" "#FD971F") )
+      (blue          (if (display-graphic-p) "#80A0FF" "#80A0FF") )
       (green         (if (display-graphic-p) "#67b11d" "#67b11d") )
       (yellow        (if (display-graphic-p) "#b1951d" "#875f00") )
       (cyan          (if (display-graphic-p) "#28def0" "#00ffff") )
@@ -112,6 +114,9 @@
    `(tooltip ((,class (:background ,ttip-sl :foreground ,base :bold nil :italic nil :underline nil))))
    `(vertical-border ((,class (:foreground ,bg4))))
    `(warning ((,class (:foreground ,war ))))
+
+;;;;; autohighlight symbol
+   `(ahs-face ((,class (:background ,green-bg ))))
 
 ;;;;; anzu-mode
    `(anzu-mode-line ((,class (:foreground ,yellow :weight bold))))
@@ -426,12 +431,12 @@
    `(powerline-inactive2 ((,class (:background ,hi-line :foreground ,base))))
 
 ;;;;; rainbow-delimiters
-   `(rainbow-delimiters-depth-1-face ((,class :foreground ,inf)))
-   `(rainbow-delimiters-depth-2-face ((,class :foreground ,func)))
-   `(rainbow-delimiters-depth-3-face ((,class :foreground ,str)))
-   `(rainbow-delimiters-depth-4-face ((,class :foreground ,green)))
-   `(rainbow-delimiters-depth-5-face ((,class :foreground ,yellow)))
-   `(rainbow-delimiters-depth-6-face ((,class :foreground ,inf)))
+   `(rainbow-delimiters-depth-1-face ((,class :foreground ,cyan)))
+   `(rainbow-delimiters-depth-2-face ((,class :foreground ,yellow)))
+   `(rainbow-delimiters-depth-3-face ((,class :foreground ,blue)))
+   `(rainbow-delimiters-depth-4-face ((,class :foreground ,orange)))
+   `(rainbow-delimiters-depth-5-face ((,class :foreground ,green)))
+   `(rainbow-delimiters-depth-6-face ((,class :foreground ,violet)))
    `(rainbow-delimiters-depth-7-face ((,class :foreground ,func)))
    `(rainbow-delimiters-depth-8-face ((,class :foreground ,str)))
    `(rainbow-delimiters-unmatched-face ((,class :foreground ,err :overline t)))
@@ -524,7 +529,7 @@
    `(web-mode-warning-face ((,class (:inherit ,font-lock-warning-face))))))
 
 
-;;;###autoload
+;;;###load
 (when load-file-name
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
