@@ -277,7 +277,6 @@ layers configuration."
             ("q" "Quick Note" plain (file+headline (concat org-directory "/notes.org") "Quick Notes")
              "+ %?\n %i\n")))
     (setq org-agenda-files '("~/org/agenda.org" "~/org/notes.org"))
-    (evil-leader/set-key "ofw" 'fixup-whitespace)
     (evil-leader/set-key "ofl" 'delete-blank-lines)
 
     ;; mark navigation
