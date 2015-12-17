@@ -247,7 +247,7 @@ layers configuration."
 
 
     ;; Configure additional packages
-    (-package wgrep)
+    (use-package wgrep)
     (use-package groovy-mode)
     (use-package ag)
 
