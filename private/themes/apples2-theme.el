@@ -4,20 +4,25 @@
   "Spacemacs-theme options."
   :group 'faces)
 
-(defcustom spacemacs-theme-comment-bg t
+(defcustom apple-theme-comment-bg t
   "Use a background for comment lines."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'apple-theme)
 
-(defcustom spacemacs-theme-org-height t
+(defcustom apple-theme-func-bg t
+  "Use a background for comment lines."
+  :type 'boolean
+  :group 'apple-theme)
+
+(defcustom apple-theme-org-height t
   "Use varying text heights for org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'apple-theme)
 
-(defcustom spacemacs-theme-org-highlight t
+(defcustom apple-theme-org-highlight t
   "Highlight org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'apple-theme)
 
 (let ((class '((class color) (min-colors 89)))
       ;;                                        GUI       TER
@@ -33,9 +38,11 @@
       (builtin       (if (display-graphic-p) "#F09090" "#F09090") )
       (keyword       (if (display-graphic-p) "#dc8ee5" "#d75fd7") )
       (const         (if (display-graphic-p) "#8080FF" "#8080FF") )
+      (annotation    (if (display-graphic-p) "#FFFF00" "#FFFF00") )
       (comment       (if (display-graphic-p) "#F0C000" "#F0C000") )
       (comment-bg    (if (display-graphic-p) "#251825" "#251825") )
       (func          (if (display-graphic-p) "#71F161" "#71F161") )
+      (func-bg       (if (display-graphic-p) "#183030" "#183030") )
       (str           (if (display-graphic-p) "#E6DB74" "#CDC673") )
       (type          (if (display-graphic-p) "#80A0FF" "#80A0FF") )
       (comp          (if (display-graphic-p) "#c56ec3" "#d75fd7") )
@@ -84,16 +91,16 @@
    `(eval-sexp-fu-flash ((,class (:background ,suc :foreground ,bg1))))
    `(eval-sexp-fu-flash-error ((,class (:background ,err :foreground ,bg1))))
    `(font-lock-builtin-face ((,class (:foreground ,builtin))))
-   `(font-lock-comment-face ((,class (:foreground ,comment :background ,(when spacemacs-theme-comment-bg comment-bg)))))
+   `(font-lock-comment-face ((,class (:foreground ,comment :background ,(when apple-theme-comment-bg comment-bg)))))
    `(font-lock-constant-face ((,class (:foreground ,const))))
    `(font-lock-doc-face ((,class (:foreground ,comment))))
-   `(font-lock-function-name-face ((,class (:foreground ,func :bold t :underline nil))))
+   `(font-lock-function-name-face ((,class (:foreground ,func :bold t :underline nil :background ,(when apple-theme-func-bg func-bg)))))
    `(font-lock-keyword-face ((,class (:bold nil :foreground ,keyword))))
    `(font-lock-negation-char-face ((,class (:foreground ,const))))
    `(font-lock-preprocessor-face ((,class (:foreground ,func))))
    `(font-lock-reference-face ((,class (:foreground ,const))))
    `(font-lock-string-face ((,class (:foreground ,str))))
-   `(font-lock-type-face ((,class (:foreground ,type :bold t))))
+   `(font-lock-type-face ((,class (:foreground ,type :bold nil))))
    `(font-lock-variable-name-face ((,class (:foreground ,var))))
    `(font-lock-warning-face ((,class (:foreground ,war ))))
    `(fringe ((,class (:background ,bg1 :foreground ,base))))
@@ -292,7 +299,7 @@
    `(helm-selection ((,class (:background ,highlight))))
    `(helm-selection-line ((,class (:background ,bg2))))
    `(helm-separator ((,class (:foreground ,comp :background ,bg1))))
-   `(helm-source-header ((,class (:background ,comp :foreground ,bg1 :bold t))))
+   `(helm-source-header ((,class (:background ,const :foreground ,bg1 :bold t))))
    `(helm-time-zone-current ((,class (:foreground ,builtin :background ,bg1))))
    `(helm-time-zone-home ((,class (:foreground ,comp :background ,bg1))))
    `(helm-visible-mark ((,class (:foreground ,inf :background ,bg3))))
@@ -377,10 +384,10 @@
 
 ;;;;; org
    `(org-agenda-clocking ((,class (:background ,highlight :foreground ,comp))))
-   `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-height 1.1 1.0)))))
-   `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :weight bold :height ,(if spacemacs-theme-org-height 1.3 1.0)))))
+   `(org-agenda-date ((,class (:foreground ,var :height ,(if apple-theme-org-height 1.1 1.0)))))
+   `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :weight bold :height ,(if apple-theme-org-height 1.3 1.0)))))
    `(org-agenda-date-weekend ((,class (:weight bold :foreground ,var))))
-   `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
+   `(org-agenda-done ((,class (:foreground ,suc :height ,(if apple-theme-org-height 1.2 1.0)))))
    `(org-agenda-structure ((,class (:weight bold :foreground ,comp))))
    `(org-block ((,class (:background ,org-cb-bg :foreground ,org-cb))))
    `(org-block-begin-line ((,class (:background ,org-cb-ln-bg :foreground ,org-cb-ln))))
@@ -392,16 +399,16 @@
    `(org-date ((,class (:underline t :foreground ,var) )))
    `(org-date-selected ((,class (:background ,func :foreground ,bg1) )))
    `(org-document-info-keyword ((,class (:foreground ,org-ml))))
-   `(org-document-title ((,class (:foreground ,func :weight bold :height ,(if spacemacs-theme-org-height 1.4 1.0) :underline t))))
+   `(org-document-title ((,class (:foreground ,func :weight bold :height ,(if apple-theme-org-height 1.4 1.0) :underline t))))
    `(org-done ((,class (:foreground ,suc :bold t :overline t :background ,org-h3-bg))))
    `(org-ellipsis ((,class (:foreground ,builtin))))
    `(org-footnote  ((,class (:underline t :foreground ,base))))
    `(org-hide ((,class (:foreground ,base))))
    `(org-kbd ((,class (:inherit region :foreground ,base :box (:line-width 1 :style released-button)))))
-   `(org-level-1 ((,class (:bold t :foreground ,inf :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight org-h1-bg) :overline t))))
-   `(org-level-2 ((,class (:bold t :foreground ,str :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight org-h2-bg)))))
-   `(org-level-3 ((,class (:bold nil :foreground ,green :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight org-h3-bg)))))
-   `(org-level-4 ((,class (:bold nil :foreground ,yellow :background ,(when spacemacs-theme-org-highlight org-h4-bg)))))
+   `(org-level-1 ((,class (:bold t :foreground ,inf :height ,(if apple-theme-org-height 1.3 1.0) :background ,(when apple-theme-org-highlight org-h1-bg) :overline t))))
+   `(org-level-2 ((,class (:bold t :foreground ,str :height ,(if apple-theme-org-height 1.2 1.0) :background ,(when apple-theme-org-highlight org-h2-bg)))))
+   `(org-level-3 ((,class (:bold nil :foreground ,green :height ,(if apple-theme-org-height 1.1 1.0) :background ,(when apple-theme-org-highlight org-h3-bg)))))
+   `(org-level-4 ((,class (:bold nil :foreground ,yellow :background ,(when apple-theme-org-highlight org-h4-bg)))))
    `(org-level-5 ((,class (:bold nil :foreground ,inf))))
    `(org-level-6 ((,class (:bold nil :foreground ,str))))
    `(org-level-7 ((,class (:bold nil :foreground ,green))))
@@ -412,7 +419,7 @@
    `(org-priority ((,class (:foreground ,war :bold t))))
    `(org-quote ((,class (:inherit org-block :slant italic))))
    `(org-scheduled ((,class (:foreground ,comp))))
-   `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
+   `(org-scheduled-today ((,class (:foreground ,func :height ,(if apple-theme-org-height 1.2 1.0)))))
    `(org-sexp-date ((,class (:foreground ,base))))
    `(org-special-keyword ((,class (:foreground ,func))))
    `(org-table ((,class (:foreground ,yellow :background ,org-h4-bg))))
@@ -484,13 +491,10 @@
 
    ;; (setq whitespace-style
    ;;       '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
-   ;; (setq whitespace-display-mappings
-   ;;       '(
-   ;;         (space-mark 32 [183] [46]) ; normal space
-   ;;         (newline-mark 10 [182 10]) ; newline
-   ;;         (tab-mark 9 [9655 9] [92 9]) ; tab
-   ;;         ))
    ;; (set-face-foreground 'whitespace-space "#282828") 
+
+;;;;; custom
+   `(c-annotation-face ((,class (:underline nil :bold nil :foreground ,annotation))))
 
 ;;;;; other, need more work
    `(ac-completion-face ((,class (:underline t :foreground ,keyword))))
