@@ -169,9 +169,12 @@ values."
      ;; specified with an installed package.
      ;; Not used for now.
      dotspacemacs-default-package-repository nil)
-     ;; User initialization goes here
+    ))
 
-    )
+(defun dotspacemacs/user-init ()
+  "Initialization function for user code.
+It is called immediately after `dotspacemacs/init'.  You are free to put any
+user code."
   )
 
 (defun dotspacemacs/user-config ()

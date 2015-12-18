@@ -76,8 +76,9 @@
       (org-ml        (if (display-graphic-p) "#ac641b" "#af5f00") )
       (highlight     (if (display-graphic-p) "#333c45" "#444444") )
       (lnum          (if (display-graphic-p) "#44505c" "#444444") )
-      (green-bg      (if (display-graphic-p) "#29422d" "#262626") )
-      (red-bg        (if (display-graphic-p) "#512e31" "#262626") ))
+      (blue-bg       (if (display-graphic-p) "#30305c" "#30305c") )
+      (green-bg      (if (display-graphic-p) "#29422d" "#29422d") )
+      (red-bg        (if (display-graphic-p) "#512e31" "#512e31") ))
 
   (custom-theme-set-faces
     'apples2
@@ -173,10 +174,10 @@
    `(dired-warning ((,class (:foreground ,war))))
 
 ;;;;; ediff
-   `(ediff-current-diff-A ((,class(:background ,org-h1-bg :foreground ,inf))))
+   `(ediff-current-diff-A ((,class(:background ,blue-bg))))
    `(ediff-current-diff-Ancestor ((,class(:background ,org-h2-bg :foreground ,str))))
-   `(ediff-current-diff-B ((,class(:background ,org-h4-bg :foreground ,yellow))))
-   `(ediff-current-diff-C ((,class(:background ,org-h3-bg :foreground ,green))))
+   `(ediff-current-diff-B ((,class(:background ,green-bg))))
+   `(ediff-current-diff-C ((,class(:background ,red-bg))))
    `(ediff-even-diff-A ((,class(:background ,bg3))))
    `(ediff-even-diff-Ancestor ((,class(:background ,bg3))))
    `(ediff-even-diff-B ((,class(:background ,bg3))))
