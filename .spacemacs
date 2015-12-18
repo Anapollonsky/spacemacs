@@ -233,7 +233,7 @@ layers configuration."
             regexp-search-ring))
 
     ;; whitespace
-    (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
+    ;; (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
     ;; (setq whitespace-style
     ;;       '(face tabs spaces newline space-mark tab-mark newline-mark indentation space-after-tab space-before-tab))
     ;; (setq whitespace-display-mappings
@@ -242,6 +242,13 @@ layers configuration."
     ;;         (newline-mark 10 [182 10]) ; newline
     ;;         (tab-mark 9 [9655 9] [92 9]) ; tab
     ;;         ))
+    ;; (setq whitespace-display-mappings '(
+    ;;                                     (space-mark   ?\     [?\u00B7]     [?.])
+    ;;                                     (space-mark   ?\xA0  [?\u00A4]     [?_])
+    ;;                                     (newline-mark ?\n    [?¶ ?\n])
+    ;;                                     (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])
+    ;; ))
+
     ;; (when (display-graphic-p) (spacemacs/toggle-whitespace-globally))
     ;; (set-face-foreground 'whitespace-space "#282828") ;; Something is messing this up, changing it to theme orange
 
