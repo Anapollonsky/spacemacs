@@ -314,7 +314,7 @@ layers configuration."
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
 
     ;; fireplace
-    (evil-leader/set-key "of" 'fireplace)
+    (evil-leader/set-key "ofr" 'fireplace)
 
     ;; colored parenthesis
     (rainbow-delimiters-mode 1)
