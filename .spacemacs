@@ -28,8 +28,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
-                                         edbi edbi-minor-mode company-edbi)
+   dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
+                                         edbi edbi-minor-mode company-edbi fireplace)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -312,6 +312,9 @@ layers configuration."
     ;; highlighting
     (evil-leader/set-key "ohs" 'hlt-highlight-symbol)
     (evil-leader/set-key "ohc" 'hlt-unhighlight-all-prop)
+
+    ;; fireplace
+    (evil-leader/set-key "of" 'fireplace)
 
     ;; colored parenthesis
     (rainbow-delimiters-mode 1)
