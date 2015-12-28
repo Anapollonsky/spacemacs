@@ -261,6 +261,7 @@ layers configuration."
     (use-package wgrep)
     (use-package groovy-mode)
     (use-package ag)
+    (use-package vlf)
 
     ;; Undo-Tree
     (setq undo-tree-auto-save-history t)
