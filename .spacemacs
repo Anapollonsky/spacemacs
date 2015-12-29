@@ -18,9 +18,9 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(fasd version-control git github erc shell gtags cscope pandoc
                                               python scala c-c++ erlang elixir haskell clojure extra-langs
-                                              javascript java emacs-lisp elm slime yaml latex sql idris
+                                              javascript java emacs-lisp elm common-lisp yaml latex sql idris
                                               regex colors perspectives auto-completion semantic
-                                              syntax-checking games org ibuffer spell-checking
+                                              syntax-checking org ibuffer spell-checking
                                               games search-engine jabber themes-megapack
                                               ztree mail chat other)
 
