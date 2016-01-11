@@ -22,14 +22,15 @@ values."
                                               regex colors perspectives auto-completion semantic
                                               syntax-checking org ibuffer spell-checking
                                               games search-engine jabber themes-megapack
-                                              ztree mail chat other)
+                                              puppet mu4e spacemacs-layouts theming typography command-log
+                                              ztree other )
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
-                                            edbi edbi-minor-mode company-edbi fireplace csv-mode
+                                            fireplace csv-mode
                                             highlight-tail zone-nyan c-c-combo drawille vlf)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -396,9 +397,6 @@ layers configuration."
     ;; ztree
     (evil-leader/set-key "ozt" 'ztree-dir)
     (evil-leader/set-key "ozd" 'ztree-diff)
-
-    ;; edbi
-    (add-to-list 'company-backends 'company-edbi)
 
     ;; java
     (setq eclim-eclipse-dirs  "~/source/eclipse"
