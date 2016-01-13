@@ -19,7 +19,7 @@ values."
    dotspacemacs-configuration-layers '(fasd version-control git github erc shell gtags cscope pandoc
                                               python scala c-c++ erlang elixir haskell clojure extra-langs
                                               javascript java emacs-lisp elm common-lisp yaml latex sql idris
-                                              regex colors perspectives auto-completion semantic
+                                              regex colors perspectives auto-completion semantic eyebrowse
                                               syntax-checking org ibuffer spell-checking
                                               games search-engine jabber themes-megapack
                                               puppet mu4e spacemacs-layouts theming typography command-log
@@ -30,7 +30,7 @@ values."
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
-                                            fireplace csv-mode
+                                            fireplace csv-mode thrift
                                             highlight-tail zone-nyan c-c-combo drawille vlf)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -405,4 +405,30 @@ layers configuration."
     ;; clojure
     (setq clojure-enable-fancify-symbols t)
 
+    ;; postgres
+    (setq sql-connection-alist
+          '((dev (sql-product 'postgres)
+                 (sql-port 5432)
+                 (sql-server "nyc-devdb1.corp.yodle.com")
+                 (sql-user "qa")
+                 (sql-password "yodleqa")
+                 (sql-database "natpal"))
+            (qa1 (sql-product 'postgres)
+                 (sql-port 5432)
+                 (sql-server "qa1-db1.qa1.yodle.com")
+                 (sql-user "qa")
+                 (sql-password "yodleqa")
+                 (sql-database "natpal"))
+            (qa2 (sql-product 'postgres)
+                 (sql-port 5432)
+                 (sql-server "qa2-db1.qa2.yodle.com")
+                 (sql-user "qa")
+                 (sql-password "yodleqa")
+                 (sql-database "natpal"))
+            (qa3 (sql-product 'postgres)
+                 (sql-port 5432)
+                 (sql-server "qa3-db1.qa3.yodle.com")
+                 (sql-user "qa")
+                 (sql-password "yodleqa")
+                 (sql-database "natpal"))))
     ))
