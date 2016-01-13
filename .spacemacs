@@ -20,7 +20,8 @@ values."
                                               python scala c-c++ erlang elixir haskell clojure extra-langs
                                               javascript java emacs-lisp elm common-lisp yaml latex sql idris
                                               regex colors perspectives auto-completion semantic eyebrowse
-                                              syntax-checking org ibuffer spell-checking
+                                              syntax-checking org ibuffer spell-checking spacemacs-layouts
+                                              speed-reading
                                               games search-engine jabber themes-megapack
                                               puppet mu4e spacemacs-layouts theming typography command-log
                                               ztree other )
