@@ -383,17 +383,51 @@ layers configuration."
 
     ;; mu4e
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-    (use-package mu4e)
-    (setq
-     mu4e-maildir       "~/.mail/gmail"   ;; top-level Maildir
-     mu4e-sent-folder   "/Sent"       ;; folder for sent messages
-     mu4e-drafts-folder "/Drafts"     ;; unfinished messages
-     mu4e-trash-folder  "/trash"      ;; trashed messages
-     mu4e-refile-folder "/archive"    ;; saved messages
-     mu4e-compose-signature "Andrew Apollonsky"
-     mu4e-get-mail-command "mbsync gmail"
-     mu4e-headers-skip-duplicates t)
-    (evil-leader/set-key "om" 'mu4e)
+
+    (setq mu4e-maildir "~/.mail"
+          mu4e-trash-folder "/Trash"
+          mu4e-refile-folder "/Archive"
+          mu4e-get-mail-command "mbsync -a"
+          mu4e-compose-signature "Andrew Apollonsky"
+          mu4e-get-mail-command "mbsync gmail"
+          mu4e-update-interval nil
+          mu4e-compose-signature-auto-include nil
+          mu4e-view-show-images t
+          mu4e-view-show-addresses t
+          mu4e-headers-skip-duplicates t)
+
+    (setq mu4e-maildir-shortcuts
+          '(("/gmail/INBOX" . ?g)
+            ("/yodle/INBOX" . ?y)))
+
+    ;; ;; Bookmarks
+    ;; (setq mu4e-bookmarks
+    ;;       `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+    ;;         ("date:today..now" "Today's messages" ?t)
+    ;;         ("date:7d..now" "Last 7 days" ?w)
+    ;;         ("mime:image/*" "Messages with images" ?p)
+    ;;         (,(mapconcat 'identity
+    ;;                      (mapcar
+    ;;                       (lambda (maildir)
+    ;;                         (concat "maildir:" (car maildir)))
+    ;;                       mu4e-maildir-shortcuts) " OR ")
+    ;;          "All inboxes" ?i)))
+
+    (setq mu4e-account-alist
+          '(("gmail"
+             ;; Under each account, set the account-specific variables you want.
+             (mu4e-sent-messages-behavior delete)
+             (mu4e-sent-folder "/gmail/.Sent_Mail")
+             (mu4e-drafts-folder "/gmail/.Drafts")
+             (user-mail-address "anapollonsky@gmail.com")
+             (user-full-name "Andrew Apollonsky"))
+            ("yodle"
+             (mu4e-sent-messages-behavior sent)
+             (mu4e-sent-folder "/yodle/Sent_Items")
+             (mu4e-drafts-folder "/yodle/Drafts")
+             (user-mail-address "Andrew.Apollonsky@yodle.com")
+             (user-full-name "Andrew Apollonsky"))))
+    (mu4e/mail-account-reset)
 
     ;; ztree
     (evil-leader/set-key "ozt" 'ztree-dir)
