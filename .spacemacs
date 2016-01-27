@@ -32,7 +32,9 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(wgrep groovy-mode ag ob-ipython syslog-mode log4j-mode
                                             fireplace csv-mode thrift
-                                            highlight-tail zone-nyan c-c-combo drawille vlf)
+                                            highlight-tail zone-nyan c-c-combo drawille vlf
+                                            es-mode
+                                            ob-http)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-search-highlight-persist vi-tilde-fringe)
@@ -264,6 +266,7 @@ layers configuration."
     (use-package groovy-mode)
     (use-package ag)
     (use-package vlf)
+    (use-package es-mode)
 
     ;; Undo-Tree
     (setq undo-tree-auto-save-history t)
@@ -286,6 +289,9 @@ layers configuration."
        (lisp . t)
        (latex . t)
        (sh . t)
+       (elasticsearch . t)
+       (http . t)
+       (sql . t)
        ))
     (setq org-src-fontify-natively t)
     (add-to-list 'org-latex-packages-alist '("" "minted")) ;; Add minted to the defaults packages to include when exporting.
@@ -466,4 +472,21 @@ layers configuration."
                  (sql-user "qa")
                  (sql-password "yodleqa")
                  (sql-database "natpal"))))
+
+    ;; elasticsearch
+    (setq es-default-url "http://ec2-54-86-123-251.compute-1.amazonaws.com:9200")
+    (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
+    (defun es-set-dev()
+      "Set elasticsearch host to dev"
+      (interactive)
+      (let ((elasticsearch-host "http://dev-elastic-cm2-101.aws.yodle.com:9200"))
+        (setq es-default-url elasticsearch-host)
+        (message (concat "Elasticsearch host set to " elasticsearch-host))))
+
+    (defun es-set-prod()
+      "Set elasticsearch host to prod"
+      (interactive)
+      (let ((elasticsearch-host "http://prod-elastic-cm2-101.prod.yodle.com:9200"))
+        (setq es-default-url elasticsearch-host)
+        (message (concat "Elasticsearch host set to " elasticsearch-host))))
     ))
