@@ -17,11 +17,11 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(fasd version-control git github erc shell gtags cscope pandoc
-                                              python scala c-c++ erlang elixir haskell clojure extra-langs
+                                              python scala c-c++ erlang elixir haskell clojure extra-langs vimscript
                                               javascript java emacs-lisp elm common-lisp yaml latex sql idris
                                               regex colors perspectives auto-completion semantic eyebrowse
                                               syntax-checking org ibuffer spell-checking spacemacs-layouts
-                                              speed-reading
+                                              speed-reading markdown
                                               games search-engine jabber themes-megapack
                                               puppet mu4e spacemacs-layouts theming typography command-log
                                               ztree other )
@@ -265,7 +265,8 @@ layers configuration."
     (use-package wgrep)
     (use-package groovy-mode)
     (use-package ag)
-    (use-package vlf)
+    (use-package vlf
+      :config (require 'vlf-setup))
     (use-package es-mode)
 
     ;; Undo-Tree
@@ -440,8 +441,8 @@ layers configuration."
     (evil-leader/set-key "ozd" 'ztree-diff)
 
     ;; java
-    (setq eclim-eclipse-dirs  "~/source/eclipse"
-          eclim-executable    "~/source/eclipse/eclim")
+    (setq eclim-eclipse-dirs  "/usr/lib/eclipse"
+          eclim-executable    "/usr/lib/eclipse/eclim")
 
     ;; scala
     (setq flycheck-scalastyle-jar "usr/bin/scalastyle")
@@ -488,6 +489,7 @@ layers configuration."
       (interactive)
       (let ((elasticsearch-host "http://dev-elastic-cm2-101.aws.yodle.com:9200"))
         (setq es-default-url elasticsearch-host)
+        (setq es-default-base elasticsearch-host)
         (message (concat "Elasticsearch host set to " elasticsearch-host))))
 
     (defun es-set-prod()
@@ -495,6 +497,7 @@ layers configuration."
       (interactive)
       (let ((elasticsearch-host "http://prod-elastic-cm2-101.prod.yodle.com:9200"))
         (setq es-default-url elasticsearch-host)
+        (setq es-default-base elasticsearch-host)
         (message (concat "Elasticsearch host set to " elasticsearch-host))))
 
     ;; jabber
