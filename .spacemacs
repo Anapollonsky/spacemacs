@@ -475,12 +475,12 @@ layers configuration."
                  (sql-database "natpal"))))
 
     ;; elasticsearch
-    (setq es-default-url "http://ec2-54-86-123-251.compute-1.amazonaws.com:9200")
+    (setq es-default-url "http://dev-elastic-cm2-201.nyc.dev.yodle.com:9200")
     (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
     (defun es-set-dev()
       "Set elasticsearch host to dev"
       (interactive)
-      (let ((elasticsearch-host "http://dev-elastic-cm2-101.aws.yodle.com:9200"))
+      (let ((elasticsearch-host "http://dev-elastic-cm2-201.nyc.dev.yodle.com:9200"))
         (setq es-default-url elasticsearch-host)
         (setq es-default-base elasticsearch-host)
         (message (concat "Elasticsearch host set to " elasticsearch-host))))
