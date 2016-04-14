@@ -443,6 +443,13 @@ layers configuration."
     (setq eclim-eclipse-dirs  "~/source/eclipse"
           eclim-executable    "~/source/eclipse/eclim")
 
+    ;; scala
+    (setq flycheck-scalastyle-jar "usr/bin/scalastyle")
+    (setq-default dotspacemacs-configuration-layers '(
+                                                      (scala :variables scala-enable-eldoc-mode t)
+                                                      (scala :variables scala-auto-insert-asterisk-in-comments t)
+                                                      ))
+
     ;; clojure
     (setq clojure-enable-fancify-symbols t)
 
@@ -489,4 +496,22 @@ layers configuration."
       (let ((elasticsearch-host "http://prod-elastic-cm2-101.prod.yodle.com:9200"))
         (setq es-default-url elasticsearch-host)
         (message (concat "Elasticsearch host set to " elasticsearch-host))))
+
+    ;; jabber
+    (setq ssl-program-name "gnutls-cli"
+          ssl-program-arguments '("--insecure" "-p" service host)
+          ssl-certificate-verification-policy 1)
+
+    (setq jabber-account-list '(
+                                ("anapollonsky@chat.facebook.com"
+                                 (:network-server . "chat.facebook.com")
+                                 (:connection-type . ssl)
+                                 )
+                                ("anapollonsky@gmail.com"
+                                 (:network-server . "talk.google.com")
+                                 (:connection-type . ssl)
+                                 ;; (:password . "blah")
+                                 )
+
+                                ))
     ))
