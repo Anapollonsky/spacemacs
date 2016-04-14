@@ -32,7 +32,6 @@
         evil-exchange
         evil-iedit-state
         evil-indent-plus
-        evil-jumper
         evil-lisp-state
         ;; for testing purpose, contribute by reporting bugs and sending PRs
         ;; to https://github.com/gabesoft/evil-mc
@@ -291,16 +290,14 @@
             (progn
               (spacemacs/integrate-evil-search t)
               (spacemacs/ahs-highlight-now-wrapper)
-              (when (configuration-layer/package-usedp 'evil-jumper)
-                (evil-set-jump))
+              (evil-set-jump)
               (spacemacs/symbol-highlight-micro-state)
               (ahs-forward)
               )
           (progn
             (spacemacs/integrate-evil-search nil)
             (spacemacs/ahs-highlight-now-wrapper)
-            (when (configuration-layer/package-usedp 'evil-jumper)
-              (evil-set-jump))
+            (evil-set-jump)
             (spacemacs/symbol-highlight-micro-state)
             (ahs-backward)
             )))
@@ -579,23 +576,6 @@
   (use-package evil-indent-plus
     :init
     (evil-indent-plus-default-bindings)))
-
-(defun spacemacs/init-evil-jumper ()
-  (use-package evil-jumper
-    :init
-    (progn
-      (setq evil-jumper-auto-save-interval 600)
-      ;; Move keybindings into global motion state map
-      (add-hook 'evil-jumper-mode-hook
-                (lambda ()
-                  (if evil-jumper-mode
-                      (progn
-                        (define-key evil-motion-state-map (kbd "<C-i>") 'evil-jumper/forward)
-                        (define-key evil-motion-state-map (kbd "C-o") 'evil-jumper/backward))
-                    (define-key evil-motion-state-map (kbd "<C-i>") 'evil-jump-forward)
-                    (define-key evil-motion-state-map (kbd "C-o") 'evil-jump-backward))))
-      (evil-jumper-mode t)
-      (setcdr evil-jumper-mode-map nil))))
 
 (defun spacemacs/init-evil-lisp-state ()
   (use-package evil-lisp-state
@@ -1735,8 +1715,8 @@ Open junk file using helm, with `prefix-arg' search in junk files"
                (disable-smooth-scroll-for-function isearch-repeat))
         :documentation "Smooth scrolling."
         :evil-leader "tv")
-      (unless dotspacemacs-smooth-scrolling
-        (spacemacs/toggle-smooth-scrolling-off))
+      (when dotspacemacs-smooth-scrolling
+        (spacemacs/toggle-smooth-scrolling-on))
       ;; add hooks here only for emacs built-in packages that are not owned
       ;; by a layer.
       (defun spacemacs//unset-scroll-margin ()
@@ -1866,7 +1846,7 @@ Open junk file using helm, with `prefix-arg' search in junk files"
         "Globally display a ~ on empty lines in the fringe."
         :evil-leader "T~")
       ;; don't enable it on spacemacs home buffer
-      (with-current-buffer  "*spacemacs*"
+      (with-current-buffer spacemacs-buffer-name
         (vi-tilde-fringe-mode -1))
       ;; after a major mode is loaded, check if the buffer is read only
       ;; if so, disable vi-tilde-fringe-mode
@@ -1897,15 +1877,16 @@ Open junk file using helm, with `prefix-arg' search in junk files"
         "9" 'select-window-9)
       (window-numbering-mode 1))
 
-    (defun spacemacs//window-numbering-assign (windows)
-      "Custom number assignment for special buffers."
-      (mapc (lambda (w)
-              (when (and (boundp 'neo-global--window)
-                         (eq w neo-global--window))
-                (window-numbering-assign w 0)))
-            windows))
-    (add-hook 'window-numbering-before-hook 'spacemacs//window-numbering-assign)
-    (add-hook 'neo-after-create-hook '(lambda (w) (window-numbering-update)))))
+    ;; make sure neotree is always 0
+    (defun spacemacs//window-numbering-assign ()
+      "Custom number assignment for neotree."
+      (when (and (boundp 'neo-buffer-name)
+                 (string= (buffer-name) neo-buffer-name))
+        0))
+    ;; using lambda to work-around a bug in window-numbering, see
+    ;; https://github.com/nschum/window-numbering.el/issues/10
+    (setq window-numbering-assign-func
+          (lambda () (spacemacs//window-numbering-assign)))))
 
 (defun spacemacs/init-volatile-highlights ()
   (use-package volatile-highlights
