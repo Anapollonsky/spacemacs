@@ -17,7 +17,7 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(fasd version-control git github erc shell gtags cscope pandoc
-                                              python scala c-c++ erlang elixir haskell clojure extra-langs vimscript
+                                              python scala c-c++ erlang elixir haskell clojure extra-langs vimscript html
                                               javascript java emacs-lisp elm common-lisp yaml latex sql idris
                                               regex colors perspectives auto-completion semantic eyebrowse
                                               syntax-checking org ibuffer spell-checking spacemacs-layouts

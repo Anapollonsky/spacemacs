@@ -507,7 +507,7 @@
    `(font-latex-match-variable-keywords ((,class (:foreground ,var))))
    `(font-latex-string-face ((,class (:foreground ,str))))
    `(icompletep-determined ((,class :foreground ,builtin)))
-   `(js2-external-variable ((,class (:foreground ,comp  ))))
+   `(js2-external-variable ((,class (:foreground ,err))))
    `(js2-function-param ((,class (:foreground ,const))))
    `(js2-jsdoc-html-tag-delimiter ((,class (:foreground ,str))))
    `(js2-jsdoc-html-tag-name ((,class (:foreground ,key1))))
